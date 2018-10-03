@@ -22,3 +22,7 @@ set mouse=a
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 nmap <Leader>k <Plug>VimwikiDiaryPrevDay
 nmap <Leader>j <Plug>VimwikiDiaryNextDay
+
+" Some brace keybindings "
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
