@@ -1,5 +1,6 @@
 execute pathogen#infect()
 
+" Standard Settings "
 filetype plugin indent on
 syntax on
 inoremap jk <Esc>
