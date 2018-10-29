@@ -30,4 +30,4 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 " For updating vimrc "
-autocmd BufWritePost ~/.vimrc !updateVimrc
+autocmd BufWritePost ~/.vimrc !{ [ -f updateVimrc ] || updateVimrc }
