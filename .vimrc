@@ -6,6 +6,7 @@ inoremap jk <Esc>
 set nocompatible
 set encoding=utf-8
 set ignorecase
+set background=dark
 
 " Indent/Tab Settings "
 set autoindent
