@@ -17,6 +17,7 @@ set expandtab
 " Mac Backspace Fix "
 set backspace=indent,eol,start
 
+set foldmethod=manual
 set formatoptions+=r
 set splitright
 set mouse=a
