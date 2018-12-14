@@ -23,6 +23,7 @@ set mouse=a
 
 " VimWiki Settings "
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_folding='list'
 nmap <Leader>k <Plug>VimwikiDiaryPrevDay
 nmap <Leader>j <Plug>VimwikiDiaryNextDay
 
