@@ -17,9 +17,13 @@ set expandtab
 " Mac Backspace Fix "
 set backspace=indent,eol,start
 
+set hidden
 set formatoptions+=r
 set splitright
 set mouse=a
+
+" Remove File Explorer Banner "
+let g:netrw_banner = 0
 
 " VimWiki Settings "
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -36,3 +40,5 @@ nnoremap <Space>ws :vsplit .<CR>
 
 " Buffer Control
 nnoremap <Space>bn :bnext<CR>
+nnoremap <Space>bb :ls<CR>
+
