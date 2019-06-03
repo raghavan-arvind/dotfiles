@@ -29,6 +29,3 @@ nmap <Leader>j <Plug>VimwikiDiaryNextDay
 " Some brace keybindings "
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
-
-" For updating vimrc "
-" autocmd BufWritePost /Users/raghavan/.vimrc !updateVimrc
