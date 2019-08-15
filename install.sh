@@ -13,3 +13,8 @@ if [ ! -d ~/.vim/pack/plugins/start/surround ]; then
     echo "Installing surround..." ;
     git clone https://tpope.io/vim/surround.git ~/.vim/pack/plugins/start/surround ; 
 fi
+
+if [ ! -d ~/.vim/pack/plugins/start/commentary ]; then
+    echo "Installing commentary..." ;
+    git clone https://tpope.io/vim/commentary.git ~/.vim/pack/plugins/start/commentary ; 
+fi
