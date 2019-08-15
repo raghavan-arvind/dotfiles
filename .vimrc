@@ -37,3 +37,6 @@ nnoremap <Space>wd :q <CR>
 nnoremap <Space>bn :bnext<CR>
 nnoremap <Space>bb :ls<CR>
 
+" Send to background
+nnoremap <Space><Space> <C-z>
+
