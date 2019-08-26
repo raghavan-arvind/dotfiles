@@ -6,11 +6,14 @@ set nocompatible
 set encoding=utf-8
 set ignorecase
 
-" Indent/Tab Settings "
+" Default Indent Settings "
 set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" Filetype-specific Indent Settings"
+autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
 
 " Mac Backspace Fix "
 set backspace=indent,eol,start
@@ -36,7 +39,3 @@ nnoremap <Space>wd :q <CR>
 " Buffer Control
 nnoremap <Space>bn :bnext<CR>
 nnoremap <Space>bb :ls<CR>
-
-" Send to background
-nnoremap <Space><Space> :w<CR><C-z>
-
