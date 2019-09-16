@@ -10,7 +10,7 @@ set ignorecase
 set autoindent
 set tabstop=4
 set shiftwidth=4
-set expandtab
+"set expandtab
 
 " Filetype-specific Indent Settings"
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
@@ -24,7 +24,7 @@ set splitright
 set mouse=a
 
 " Remove File Explorer Banner "
-let g:netrw_banner = 0
+" let g:netrw_banner = 0
 
 " VimWiki Settings "
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
