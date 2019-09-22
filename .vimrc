@@ -38,4 +38,5 @@ nnoremap <Space>wd :q <CR>
 
 " Buffer Control
 nnoremap <Space>bn :bnext<CR>
+nnoremap <Space>bp :bprev<CR>
 nnoremap <Space>bb :ls<CR>
