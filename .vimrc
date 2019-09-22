@@ -23,8 +23,9 @@ set formatoptions+=r
 set splitright
 set mouse=a
 
-" Remove File Explorer Banner "
+" Explorer Settings
 let g:netrw_banner = 0
+nnoremap <Space>re :Rex<CR>
 
 " VimWiki Settings "
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -40,3 +41,4 @@ nnoremap <Space>wd :q <CR>
 nnoremap <Space>bn :bnext<CR>
 nnoremap <Space>bp :bprev<CR>
 nnoremap <Space>bb :ls<CR>
+
