@@ -1,4 +1,5 @@
 # Link config files
+
 ln -f .vimrc ~/.vimrc
 ln -f .bashrc ~/.bashrc
 ln -f .tmux.conf ~/.tmux.conf
