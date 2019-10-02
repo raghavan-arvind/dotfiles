@@ -42,3 +42,5 @@ nnoremap <Space>bn :bnext<CR>
 nnoremap <Space>bp :bprev<CR>
 nnoremap <Space>bb :ls<CR>
 
+" Colors
+set background=dark
