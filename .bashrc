@@ -29,7 +29,7 @@ if [ -f ~/.backup/log.txt ]; then
 fi
 
 # Pretty git branch logging
-alias git="git log --graph  --pretty=oneline --abbrev-commit"
+alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
 
 [[ -f ~/.bash_temp ]] && source ~/.bash_temp
 
