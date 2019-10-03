@@ -2,7 +2,7 @@ export PATH="$PATH:~/bin"
 
 xset r rate 175 45
 
-if [[ -f ~/.dropbox-dist/dropboxd ]]; then 
+if [[ -f ~/.dropbox-dist/dropboxd ]] && ! pgrep dropbox &> /dev/null; then 
     nohup ~/.dropbox-dist/dropboxd &> /dev/null &
     disown
 fi
