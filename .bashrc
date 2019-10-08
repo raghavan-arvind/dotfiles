@@ -1,6 +1,6 @@
 export PATH="$PATH:~/bin"
 
-xset r rate 175 45
+[[ -z $DISPLAY ]] && xset r rate 175 45
 
 if [[ -f ~/.dropbox-dist/dropboxd ]] && ! pgrep dropbox &> /dev/null; then 
     nohup ~/.dropbox-dist/dropboxd &> /dev/null &
