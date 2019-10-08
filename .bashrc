@@ -31,8 +31,10 @@ fi
 # Pretty git branch logging
 alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
 
-# Attach to existing tmux session
-pgrep tmux &> /dev/null && [[ -z $TMUX ]] && tmux a
+# Attach to or create tmux session
+if type tmux &> /dev/null && [[ -z $TMUX ]]; then
+    pgrep tmux &> /dev/null && tmux a || tmux
+fi
 
 [[ -f ~/.bash_temp ]] && source ~/.bash_temp
 

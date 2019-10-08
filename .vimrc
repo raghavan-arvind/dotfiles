@@ -35,7 +35,6 @@ nmap <Leader>j <Plug>VimwikiDiaryNextDay
 " Splitting Windows
 nnoremap <Space>w <C-W>
 nnoremap <Space>w/ :vsplit .<CR>
-nnoremap <Space>wd :q <CR>
 
 " Buffer Control
 nnoremap <Space>bn :bnext<CR>
