@@ -5,6 +5,7 @@ inoremap jk <Esc>
 set nocompatible
 set encoding=utf-8
 set ignorecase
+set clipboard=unnamed
 
 " Default Indent Settings "
 set autoindent
@@ -31,6 +32,7 @@ nnoremap <Space>re :Rex<CR>
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 nmap <Leader>k <Plug>VimwikiDiaryPrevDay
 nmap <Leader>j <Plug>VimwikiDiaryNextDay
+nmap <Space>l <Plug>VimwikiToggleListItem
 
 " Splitting Windows
 nnoremap <Space>w <C-W>

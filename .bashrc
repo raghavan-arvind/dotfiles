@@ -16,6 +16,7 @@ PS1="\e[0;38;5;114m\W\e[m\e[0;38;5;228m\$(parse_git_branch)\e[m $ "
 alias copy="xclip -sel c"
 alias rl="source ~/.bashrc"
 alias edit="vim ~/.bashrc && source ~/.bashrc"
+alias open="xdg-open"
 
 # Reminder to back up local machine
 if [ -f ~/.backup/log.txt ]; then
