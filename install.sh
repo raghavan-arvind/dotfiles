@@ -1,8 +1,13 @@
 # Link config files
-
 ln -f .vimrc ~/.vimrc
 ln -f .bashrc ~/.bashrc
 ln -f .tmux.conf ~/.tmux.conf
+
+mkdir -p ~/.config/i3
+mkdir -p ~/.config/i3config
+
+ln -f .config/i3/config ~/.config/i3/config
+ln -f .config/i3status/config ~/.config/i3status/config
 
 
 # Install vim packages

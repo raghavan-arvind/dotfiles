@@ -1,0 +1,37 @@
+general { 
+    output_format = "i3bar"
+    colors = true
+    interval = 1
+}
+
+order += "cpu_temperature 0"
+order += "wireless wlp2s0"
+order += "battery 0"
+order += "tztime local"
+
+
+tztime local {
+    format = "%l:%M %p - %b %d, %G"
+}
+
+battery 0 {
+        format = "%status %percentage "
+        status_chr = " CHR"
+        status_bat = " BAT"
+        status_unk = " UNK"
+        status_full = " FULL"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        threshold_type = "percentage"
+        low_threshold = 25
+        integer_battery_capacity = true
+}
+
+wireless wlp2s0 { 
+    format_up = " %essid (%bitrate) "
+    format_down = " WiFi down "
+}
+
+cpu_temperature 0 {
+    format = " %degrees °C "
+    max_threshold = 40
+}
