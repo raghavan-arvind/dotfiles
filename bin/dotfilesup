@@ -2,7 +2,13 @@
 set -e 
 
 pushd ~/dotfiles > /dev/null
-cp ~/bin/* bin/
+
+if [[ -e ~/bin ]]; then
+    rm -rf bin/
+    mkdir bin
+    cp ~/bin/* bin/
+fi
+
 git add $(find . | rg -v ".git")
 git commit -m "$@"
 git push
