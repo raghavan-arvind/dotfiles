@@ -151,6 +151,12 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# Workspace bindings
+bindsym $mod+p                  workspace prev
+bindsym $mod+Shift+p            move container to workspace prev
+bindsym $mod+semicolon          workspace next
+bindsym $mod+Shift+semicolon    move container to workspace next
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
