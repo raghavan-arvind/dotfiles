@@ -9,6 +9,8 @@ mkdir -p ~/.config/i3config
 ln -f .config/i3/config ~/.config/i3/config
 ln -f .config/i3status/config ~/.config/i3status/config
 
+mkdir -p ~/bin
+cp bin/* ~/bin
 
 # Install vim packages
 if [ ! -d ~/.vim/pack/plugins/start/vimwiki ]; then
