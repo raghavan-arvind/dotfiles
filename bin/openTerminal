@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+current=$(xdotool getactivewindow)
+another=$(xdotool search --onlyvisible --class Terminal | rg -v $current)
+
+if [[ ! -z $another ]]; then
+    echo "Another window exists"
+    # Another window already exists
+    xdotool windowfocus $another
+    [[ -z $TMUX ]] && exit || tmux detach
+fi

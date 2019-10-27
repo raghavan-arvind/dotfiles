@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e 
+
+[[ $(pwd) != /home/raghavan/Documents/crashmonkey/ace ]] && echo "Not in ace/ directory!" && exit
+
+if [[ $1 == "clean" ]]; then
+    rm -rf 2019*
+    rm -rf ../code/tests/seq1/
+    git checkout ../code/tests/seq1
+    rm -rf j-lang*
+    rm -rf j2-lang*
+    rm -rf 001 002 003 004 005 006 007 008 009 010 011 012 013 014
+    rm -rf 001.out 002.out 003.out 004.out 005.out 006.out 007.out 008.out 009.out 010.out 011.out 012.out 013.out 014.out
+    rm -rf output/
+elif [[ $1 == "generic" ]]; then
+    python2 ace.py -l 1 -t xfstest-concise
+    for i in $(seq 1 14); do
+        python2 xfstestAdapter.py -p output/ -t ../code/tests/seq1/j-lang-files/j2-lang${i} -n $((568 + i)) -f generic
+    done
+else
+    echo "No command given!"
+fi

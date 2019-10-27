@@ -1,0 +1,6 @@
+#!/bin/bash
+
+i3status | while true; do
+    read line
+    echo "Status: $line"
+done

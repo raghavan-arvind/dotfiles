@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e 
+
+pushd ~/dotfiles > /dev/null
+cp ~/bin/* bin/
+git add $(find . | rg -v ".git")
+git commit -m "$@"
+git push
+popd > /dev/null

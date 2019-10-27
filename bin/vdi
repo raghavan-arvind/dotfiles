@@ -1,0 +1,33 @@
+#!/bin/bash
+sudo modprobe nbd
+
+if [ -z "$1" ] || [ "$1" = "mount" ]; then
+	if lsblk | rg "nbd" > /dev/null ; then
+		echo "Already mounted!"
+	else
+		cd /home/raghavan/VirtualBoxVMs/
+		echo "Mounting vdi file on /mnt/xfstest!"
+		qemu-nbd -c /dev/nbd0 "Ubuntu.vdi"
+		sleep .5
+		mount /dev/nbd0p4 /mnt/xfstest
+		mount /dev/nbd0p1 /mnt/xfstestroot
+	fi
+elif [ "$1" = "unmount" ]; then
+	echo "Unmounting!"
+	umount /mnt/xfstest
+	umount /mnt/xfstestroot
+	qemu-nbd -d /dev/nbd0
+elif [ "$1" = "copy" ]; then
+	if [ "$2" = "generic" ]; then
+		echo "Copying generic tests over!"
+		cp /home/raghavan/Documents/crashmonkey/ace/output/*  /mnt/xfstest/osboxes/xfstests/tests/generic
+	elif [ "$2" = "failing" ]; then
+		echo "Copying failing tests over!"
+		cp /home/raghavan/Documents/crashmonkey/ace/btrfs/*  /mnt/xfstest/osboxes/xfstests/tests/btrfs
+		cp /home/raghavan/Documents/crashmonkey/ace/f2fs/*  /mnt/xfstest/osboxes/xfstests/tests/f2fs
+	else
+		echo "Copy what tho?"
+	fi
+else
+	echo "Usage: vdi <mount/unmount/copy generic/copy btrfs> (Default: mount)"
+fi
