@@ -156,6 +156,7 @@ bindsym $mod+p                  workspace prev
 bindsym $mod+Shift+p            move container to workspace prev
 bindsym $mod+semicolon          workspace next
 bindsym $mod+Shift+semicolon    move container to workspace next
+bindsym $mod+Tab                workspace back_and_forth
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
