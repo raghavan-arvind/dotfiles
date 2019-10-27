@@ -62,7 +62,6 @@ bindsym $mod+d exec dmenu_run
 for_window [class=".*"] border pixel 0
 gaps outer 10
 gaps inner 10
-smart_gaps on
 
 # change focus
 bindsym $mod+h focus left
