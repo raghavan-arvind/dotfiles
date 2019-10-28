@@ -42,11 +42,12 @@ floating_modifier $mod
 
 exec --no-startup-id "xrandr && xrandr --output eDP1 --mode 1920x1080"
 exec --no-startup-id "feh --bg-scale ~/Pictures/wallpaper.png"
+exec --no-startup-id "compton --config ~/.config/compton.conf"
 
 # Start programs
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 bindsym $mod+b exec chromium
-bindsym $mod+i exec i3-sensible-terminal -- vim ~/.config/i3/config
+bindsym $mod+i exec urxvt -e vim ~/.config/i3/config
 bindsym $mod+y exec i3lock -i ~/Pictures/wallpaper.png
 
 # kill focused window
@@ -59,7 +60,6 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-for_window [class=".*"] border pixel 0
 gaps outer 10
 gaps inner 10
 
@@ -157,8 +157,7 @@ bindsym $mod+semicolon          workspace next
 bindsym $mod+Shift+semicolon    move container to workspace next
 bindsym $mod+Tab                workspace back_and_forth
 bindsym $mod+g                  workspace $ws1
-bindsym $mod+m                  workspace $ws5;
-                                exec ~/bin/open_mail_calendar
+bindsym $mod+m                  workspace $ws5; exec [[ -z "$(xdotool search --all --onlyvisible --name chromium)" ]] && chromium --new-window https://gmail.com https://calendar.google.com
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

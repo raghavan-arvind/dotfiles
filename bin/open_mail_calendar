@@ -1,6 +1,0 @@
-#!/bin/bash
-
-if [[ -z "$(xdotool search --onlyvisible chromium)" ]]
-then
-    chromium --new-window https://gmail.com https://calendar.google.com ;
-fi

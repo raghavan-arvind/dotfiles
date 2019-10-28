@@ -11,7 +11,7 @@ parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-PS1="\e[0;38;5;114m\W\e[m\e[0;38;5;228m\$(parse_git_branch)\e[m $ "
+PS1="\[\e[0;38;5;114m\W\e[m\]\[\e[0;38;5;228m\$(parse_git_branch)\e[m\] $ "
 
 alias copy="xclip -sel c"
 alias rl="source ~/.bashrc"
