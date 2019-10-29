@@ -5,9 +5,11 @@ ln -f .tmux.conf ~/.tmux.conf
 
 mkdir -p ~/.config/i3
 mkdir -p ~/.config/i3config
+mkdir -p ~/.config/polybar
 
 ln -f .config/i3/config ~/.config/i3/config
 ln -f .config/i3status/config ~/.config/i3status/config
+ln -f .config/polybar/config ~/.config/polybar/config
 
 mkdir -p ~/bin
 cp bin/* ~/bin
