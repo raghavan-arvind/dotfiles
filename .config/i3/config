@@ -43,6 +43,7 @@ floating_modifier $mod
 exec --no-startup-id "xrandr && xrandr --output eDP1 --mode 1920x1080"
 exec --no-startup-id "feh --bg-scale ~/Pictures/wallpaper.png"
 exec --no-startup-id "compton --config ~/.config/compton.conf"
+exec --no-startup-id "polybar arvind-bar"
 
 # Start programs
 bindsym $mod+Return exec urxvt
