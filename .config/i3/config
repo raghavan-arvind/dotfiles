@@ -48,7 +48,7 @@ exec --no-startup-id "compton --config ~/.config/compton.conf"
 bindsym $mod+Return exec urxvt
 bindsym $mod+b exec chromium
 bindsym $mod+i exec urxvt -e vim ~/.config/i3/config
-bindsym $mod+y exec i3lock -i ~/Pictures/wallpaper.png
+bindsym $mod+y exec ~/bin/i3lock-blur
 
 # kill focused window
 bindsym $mod+u kill
@@ -60,6 +60,9 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+for_window [class = ".*"] border pixel 2
+client.focused #000000 #000000 #000000 #00000 #EE9A49
+client.unfocused #000000 #000000 #000000 #00000 #8B7D6B
 gaps outer 10
 gaps inner 10
 

@@ -14,7 +14,7 @@ if [[ $1 == "clean" ]]; then
     rm -rf output/
 elif [[ $1 == "generic" ]]; then
     python2 ace.py -l 1 -t xfstest-concise
-    for i in $(seq 1 14); do
+    for i in $(seq 1 13); do
         python2 xfstestAdapter.py -p output/ -t ../code/tests/seq1/j-lang-files/j2-lang${i} -n $((568 + i)) -f generic
     done
 else
