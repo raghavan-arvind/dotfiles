@@ -18,8 +18,8 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
+background = #00222
+background-alt = #00444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
@@ -33,7 +33,7 @@ width = 100%
 height = 27
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+radius = 0.0
 fixed-center = false
 
 background = ${colors.background}
@@ -55,11 +55,11 @@ font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm i3
-modules-center = mpd
+modules-left = i3
+;modules-center = mpd
 modules-right = pulseaudio wlan battery date
 
-tray-position = right
+tray-position = center
 tray-padding = 2
 ;tray-background = #0063ff
 
@@ -258,13 +258,13 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date = "%b %d, %G"
-date-alt = "%b %d, %G"
+date-alt = "%a %b %d, %G"
 
-time = %l:%m %p
-time-alt = %l:%m %p
+time = %l:%M %p
+time-alt = %l:%M %p
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
@@ -275,12 +275,15 @@ label = %time%  %date%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
 label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = muted %percentage%%
 label-muted-foreground = #666
+
+use-ui-max = true
+interval = 5
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -291,7 +294,7 @@ bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = |
+bar-volume-indicator = a
 bar-volume-indicator-font = 2
 bar-volume-fill = ─
 bar-volume-fill-font = 2
@@ -353,6 +356,10 @@ animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
+
+label-charging = CHR %percentage%%
+label-discharging = BAT %percentage%%
+label-full = FULL
 
 animation-discharging-0 = 
 animation-discharging-1 = 
