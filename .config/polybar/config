@@ -18,8 +18,8 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #00222
-background-alt = #00444
+background = #222
+background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
@@ -59,8 +59,8 @@ modules-left = i3
 ;modules-center = mpd
 modules-right = pulseaudio wlan battery date
 
-tray-position = center
-tray-padding = 2
+;tray-position = right
+;tray-padding = 2
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
@@ -258,7 +258,7 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 1
+interval = 3
 
 date = "%b %d, %G"
 date-alt = "%a %b %d, %G"
@@ -424,7 +424,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini
