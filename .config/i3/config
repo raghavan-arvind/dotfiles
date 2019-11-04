@@ -71,7 +71,6 @@ gaps outer 10
 gaps inner 10
 gaps top 0
 gaps bottom 0
-smart_gaps on
 
 # change focus
 bindsym $mod+h focus left
