@@ -4,7 +4,6 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -49,7 +48,7 @@ exec_always --no-startup-id "compton --config ~/.config/compton.conf"
 bindsym $mod+Return exec urxvt
 bindsym $mod+b exec chromium
 bindsym $mod+i exec urxvt -e vim ~/.config/i3/config
-bindsym $mod+y exec "~/bin/betterlockscreen -l dim"
+bindsym $mod+y exec systemctl suspend
 bindsym $mod+n exec spotify
 bindsym $mod+o exec "~/bin/airpods on"
 bindsym $mod+Shift+o exec "~/bin/airpods off"
@@ -195,8 +194,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
 #         status_command i3status

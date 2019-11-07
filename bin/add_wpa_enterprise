@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+[[ $1 == "-h" ]] && echo "Usage: add_wpa_enterprise <ssid> <username>" && exit
+
+ssid=$1
+username=$2
+
+[[ ! -z $ssid ]]
+[[ ! -z $username ]]
+
+echo "SSID:     $ssid"
+echo "Username: $username"
+read -p "Continue? (y/n) " -n 1 -r
+echo
+
+[[ $REPLY =~ ^[Yy]$ ]]
+
+nmcli connection add \
+    type wifi con-name "$ssid" ifname wlp2s0 ssid "$ssid" -- \
+    wifi-sec.key-mgmt wpa-eap 802-1x.eap ttls \
+    802-1x.phase2-auth mschapv2 802-1x.identity "$username"
+
+nmcli connection up $ssid --ask
