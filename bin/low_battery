@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+[ -r "$HOME/.dbus/Xdbus" ] && . "$HOME/.dbus/Xdbus"
+
+low_threshold=20
+critical_threshold=5
+suspend_command="systemctl suspend"
+
+# Ensure acpi command exists
+type acpi &> /dev/null
+
+# Only run if not charging
+acpi -b | rg "Discharging" &> /dev/null
+
+batt=$(acpi -b | rg -o "[0-9]+%" | rg -o "[0-9]+")
+
+if (( $batt < $low_threshold )); then
+    notify-send "Low battery, plug into charger!"
+elif (( $batt < $critical_threshold )); then
+    notify-send "Battery critically low! Going to sleep!"
+    sleep 2
+    $suspend_command
+fi
+

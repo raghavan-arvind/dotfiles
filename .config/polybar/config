@@ -264,7 +264,7 @@ date = "%b %d, %G"
 date-alt = "%a %b %d, %G"
 
 time = %l:%M %p
-time-alt = %l:%M %p
+time-alt = %l:%M:%S %p
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
