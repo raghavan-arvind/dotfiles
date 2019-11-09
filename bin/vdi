@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 sudo modprobe nbd
 
 if [ -z "$1" ] || [ "$1" = "mount" ]; then
@@ -20,11 +22,11 @@ elif [ "$1" = "unmount" ]; then
 elif [ "$1" = "copy" ]; then
 	if [ "$2" = "generic" ]; then
 		echo "Copying generic tests over!"
-		cp /home/raghavan/Documents/crashmonkey/ace/output/*  /mnt/xfstest/osboxes/xfstests/tests/generic
+		cp /home/raghavan/Documents/Research/crashmonkey/ace/output/*  /mnt/xfstest/osboxes/xfstests/tests/generic
 	elif [ "$2" = "failing" ]; then
 		echo "Copying failing tests over!"
-		cp /home/raghavan/Documents/crashmonkey/ace/btrfs/*  /mnt/xfstest/osboxes/xfstests/tests/btrfs
-		cp /home/raghavan/Documents/crashmonkey/ace/f2fs/*  /mnt/xfstest/osboxes/xfstests/tests/f2fs
+		cp /home/raghavan/Documents/Research/crashmonkey/ace/btrfs/*  /mnt/xfstest/osboxes/xfstests/tests/btrfs
+		cp /home/raghavan/Documents/Research/crashmonkey/ace/f2fs/*  /mnt/xfstest/osboxes/xfstests/tests/f2fs
 	else
 		echo "Copy what tho?"
 	fi

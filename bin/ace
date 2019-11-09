@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e 
 
-[[ $(pwd) != /home/raghavan/Documents/crashmonkey/ace ]] && echo "Not in ace/ directory!" && exit
+[[ $(pwd) != /home/raghavan/Documents/Research/crashmonkey/ace ]] && echo "Not in ace/ directory!" && exit
 
 if [[ $1 == "clean" ]]; then
     rm -rf 2019*
