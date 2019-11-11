@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import os,sys
+import time
 import subprocess
 
-def output(string):
-    sys.stdout.write(string)
+def output(msg):
+    sys.stdout.write(str(msg))
     sys.stdout.flush()
 
 def get_emails(first, last, domain):
@@ -19,16 +20,27 @@ def get_emails(first, last, domain):
     emails.append("{0}{1}@{2}.com".format(first[0], last, domain))
     emails.append("{0}-{1}@{2}.com".format(first[0], last, domain))
     emails.append("{1}{0}@{2}.com".format(first[0], last, domain))
-    for i in range(len(last)-1):
-        emails.append("{0}{1}@{2}.com".format(first, last[:i+1], domain))
+    emails.append("{0}{1}@{2}.com".format(first, last[0], domain))
     emails.append("{0}@{2}.com".format(first, last, domain))
     emails.append("{1}@{2}.com".format(first, last, domain))
     return emails
 
 def email_exists(e):
-    command = "~/bin/email_exists " + e
-    result = subprocess.Popen(command, shell=True)
-    text = result.communicate()[0]
+    count, LIM = 0, 100
+    retcode = None
+
+    while retcode not in [0, 1] and count < LIM:
+        if retcode is not None:
+            output(str(retcode) + " ")
+            time.sleep(1)
+        command = "~/bin/email_exists " + e
+        result = subprocess.Popen(command, shell=True)
+        text = result.communicate()[0]
+        retcode = result.returncode
+        count += 1
+    if not count < LIM:
+        output(" TIMEOUT")
+
     return result.returncode == 0
 
 if __name__ == '__main__':

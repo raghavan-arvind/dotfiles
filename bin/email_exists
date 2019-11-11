@@ -2,12 +2,16 @@
 
 if [ "$1" = "-h" ] || [ ! "$#" -eq "1" ]; then
     echo "Usage: email_exists <email>"
-    exit -1
+    exit 2
 fi
 
 email="$1"
 
 response=$(curl -s --request POST --data "lang=en&email=${email}" --insecure "https://mailtester.com/index.php")
 
-echo $response | rg "E-mail address is valid" &> /dev/null
-exit
+echo $response | rg "E-mail address is valid" &> /dev/null && exit 0
+echo $response | rg "The user you are trying to contact" &> /dev/null && exit 0
+echo $response | rg "E-mail address does not exist" &> /dev/null && exit 1
+echo $response | rg "Server doesn't allow e-mail address verification" &> /dev/null && exit 3
+
+exit -1
