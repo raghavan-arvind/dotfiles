@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ "$1" = "-h" ] || [ ! "$#" -eq "1" ]; then
+    echo "Usage: email_exists <email>"
+    exit -1
+fi
+
+email="$1"
+
+response=$(curl -s --request POST --data "lang=en&email=${email}" --insecure "https://mailtester.com/index.php")
+
+echo $response | rg "E-mail address is valid" &> /dev/null
+exit
