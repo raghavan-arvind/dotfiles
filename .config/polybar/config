@@ -418,7 +418,7 @@ menu-2-1-exec = menu-open-0
 [module/weather]
 type = custom/script
 exec = ~/bin/weather
-interval = 300
+interval = 180
 
 
 [settings]
