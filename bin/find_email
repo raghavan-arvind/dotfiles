@@ -32,12 +32,13 @@ def email_exists(e):
     while retcode not in [0, 1] and count < LIM:
         if retcode is not None:
             output(str(retcode) + " ")
-            time.sleep(1)
         command = "~/bin/email_exists " + e
         result = subprocess.Popen(command, shell=True)
         text = result.communicate()[0]
         retcode = result.returncode
+        time.sleep(3)
         count += 1
+
     if not count < LIM:
         output(" TIMEOUT")
 

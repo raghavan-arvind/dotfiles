@@ -13,5 +13,6 @@ echo $response | rg "E-mail address is valid" &> /dev/null && exit 0
 echo $response | rg "The user you are trying to contact" &> /dev/null && exit 0
 echo $response | rg "E-mail address does not exist" &> /dev/null && exit 1
 echo $response | rg "Server doesn't allow e-mail address verification" &> /dev/null && exit 3
+echo $response | rg "Mailserver does not accept" &> /dev/null && exit 4
 
 exit -1

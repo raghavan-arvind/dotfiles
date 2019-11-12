@@ -1,0 +1,114 @@
+#!/usr/bin/env python
+import os,sys
+import smtplib, ssl
+
+from time import sleep
+
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+def send_email(email, name):
+    recruiter_email = email.lower()
+    name = name.lower().capitalize()
+    subject = "Software Development Internship"
+    body = """\
+Hi {}!
+
+I wanted to reach out because I would love to be considered for the Summer 2020 Software Engineering Internship position. I've attached my resume below, and if you think this would be a good fit, it would be awesome if you could pass my resume along.
+
+Thanks!
+Arvind
+""".format(name)
+
+    with open("/home/raghavan/.gmail", "r") as f:
+        sender_email, password = list(map(lambda s: s.strip(), f.readlines()))
+        message = MIMEMultipart()
+        message['From'] = sender_email
+        message['To'] = recruiter_email
+        message['Subject'] = subject
+
+        message.attach(MIMEText(body, "plain"))
+
+        filename = "/home/raghavan/Documents/ImportantFiles/Arvind_Resume.pdf"
+
+        with open(filename, "rb") as attachment:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(attachment.read())
+
+        encoders.encode_base64(part)
+
+        part.add_header(
+            "Content-Disposition",
+            f"attachment; filename=Arvind_Resume.pdf",
+        )
+
+        message.attach(part)
+        text = message.as_string()
+
+        retries = 0
+        finished = False
+        while retries < 3 and not finished:
+            try:
+                context = ssl.create_default_context()
+                with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+                    server.login(sender_email, password)
+                    server.sendmail(sender_email, recruiter_email, text)
+                finished = True
+            except Exception as e:
+                if "temporary" in str(e).lower():
+                    output(" x")
+                    retries += 1
+                else:
+                    output(" \nError: " + e + "\n")
+                    sys.exit(1)
+
+def output(msg):
+    sys.stdout.write(str(msg))
+    sys.stdout.flush()
+
+def get_emails(first, last, domain, do_all=False):
+    emails = []
+    emails.append("{0}{1}@{2}.com".format(first, last, domain))
+    emails.append("{0}.{1}@{2}.com".format(first, last, domain))
+    emails.append("{0}-{1}@{2}.com".format(first, last, domain))
+    emails.append("{0}_{1}@{2}.com".format(first, last, domain))
+    emails.append("{1}{0}@{2}.com".format(first, last, domain))
+    emails.append("{1}.{0}@{2}.com".format(first, last, domain))
+    emails.append("{1}-{0}@{2}.com".format(first, last, domain))
+    emails.append("{1}_{0}@{2}.com".format(first, last, domain))
+    if len(last) > 1:
+        emails.append("{0}{1}@{2}.com".format(first, last[0], domain))
+        emails.append("{0}{1}@{2}.com".format(first[0], last, domain))
+        emails.append("{0}-{1}@{2}.com".format(first[0], last, domain))
+        emails.append("{1}{0}@{2}.com".format(first[0], last, domain))
+
+    if do_all:
+        emails.append("{0}@{2}.com".format(first, last, domain))
+        emails.append("{1}@{2}.com".format(first, last, domain))
+
+    return emails
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    if len(args) > 4 or sys.argv[1] in ['-h', '--help']:
+        print("Usage: spam_recruiter [--all] <firstname> <last> <domain>")
+        sys.exit(1)
+
+    do_all=False
+    if args[0] == '--all':
+        do_all=True
+        args = args[1:]
+
+    first, last, domain = args
+    emails = get_emails(first, last, domain, do_all)
+
+    maxlen = max(len(e) for e in emails) + 13
+    for e in emails:
+        s = "Emailing {}... ".format(e)
+        output(s.ljust(maxlen))
+        send_email(e, first)
+        sleep(0.5)
+        output("done!\n")
+

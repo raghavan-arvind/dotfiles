@@ -57,7 +57,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = i3
 ;modules-center = mpd
-modules-right = pulseaudio wlan battery date
+modules-right = weather pulseaudio wlan battery date
 
 ;tray-position = right
 ;tray-padding = 2
@@ -414,6 +414,12 @@ menu-2-0 = power off
 menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+
+[module/weather]
+type = custom/script
+exec = ~/bin/weather
+interval = 300
+
 
 [settings]
 screenchange-reload = true
