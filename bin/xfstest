@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+name="XFSTest3"
+
+if [ "$1" = "-2" ]; then
+    name="XFSTest2"
+    shift 1
+fi
+
+
+echo "Controlling $name!"
+
+if [ "$1" = "start" ] &&  [ "$2" = "gui" ]; then
+    VBoxManage startvm $name
+elif [ "$1" = "start" ]; then
+    VBoxManage startvm $name --type headless
+elif [ "$1" = "poweroff" ]; then
+    VBoxManage controlvm $name poweroff
+else
+    echo "Invalid command: xfstest $@"
+fi

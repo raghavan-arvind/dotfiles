@@ -19,8 +19,7 @@ batt=$(acpi -b | rg -o "[0-9]+%" | rg -o "[0-9]+")
 if (( $batt < $low_threshold )); then
     notify-send "Low battery, plug into charger!"
 elif (( $batt < $critical_threshold )); then
-    notify-send "Battery critically low! Going to sleep!"
-    sleep 2
+    notify-send "Battery critically low! Going to sleep in 30!"
+    sleep 30
     $suspend_command
 fi
-

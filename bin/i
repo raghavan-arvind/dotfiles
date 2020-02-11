@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ ! -f .ifile ]; then 
+    echo "No .ifile found!"
+    exit
+fi
+
+if [[ -z "$1" ]]; then
+    set -- "1"
+fi
+
+vim $(sed "${1}q;d" .ifile)

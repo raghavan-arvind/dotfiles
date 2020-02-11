@@ -5,13 +5,13 @@ set -e
 mkdir -p ~/.backup
 
 # Create backup zip of home directory.
-zip -r ~/.backup/backup_temp.zip ~/Documents ~/.local/share/Anki2 ~/.bash_temp
-mv ~/.backup/backup_temp.zip ~/.backup/backup.zip
+tar caf ~/.backup/backup_temp.tar.xz ~/Documents ~/.local/share/Anki2 ~/.bash_temp
+mv ~/.backup/backup_temp.tar.xz ~/.backup/backup.tar.xz
 
 # Upload backup to Google Drive.
-gdrive sync upload --keep-local ~/.backup $(cat ~/.gdrive_key)
+~/bin/gdrive sync upload --keep-local ~/.backup $(cat ~/.gdrive_key)
 echo "$(date) - Successfully uploaded to gdrive." >> ~/.backup/log.txt
 
 # Remove backup files from disk.
-rm -rf ~/.backup/backup.zip
-rm -rf ~/.backup/backup_temp.zip
+rm -rf ~/.backup/backup.tar.xz
+rm -rf ~/.backup/backup_temp.tar.xz

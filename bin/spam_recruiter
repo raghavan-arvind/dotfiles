@@ -92,7 +92,7 @@ def get_emails(first, last, domain, do_all=False):
 
 if __name__ == '__main__':
     args = sys.argv[1:]
-    if len(args) > 4 or sys.argv[1] in ['-h', '--help']:
+    if len(args) not in [3, 4] or sys.argv[1] in ['-h', '--help']:
         print("Usage: spam_recruiter [--all] <firstname> <last> <domain>")
         sys.exit(1)
 

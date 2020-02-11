@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+
+# Ensure argument exists.
+[[ ! -z "$1" ]]
+
+
+while IFS= read -r line; do
+    read -p "Kill $line ? [Y/n] " answer
+    if [[ ${answer:0:1} == "y" ]] || [[ ${answer:0:1} == "Y" ]]; then
+        pkill $(echo $line | cut -d " " -f 1)
+    fi
+done <<< $(pgrep -ifl $1)

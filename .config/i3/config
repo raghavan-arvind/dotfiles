@@ -168,6 +168,7 @@ bindsym $mod+Shift+semicolon    move container to workspace next
 bindsym $mod+Tab                workspace back_and_forth
 bindsym $mod+g                  workspace $ws1
 bindsym $mod+m                  workspace $ws5; exec [[ -z "$(xdotool search --all --onlyvisible --name chromium)" ]] && chromium --new-window https://gmail.com https://calendar.google.com
+bindsym $mod+Shift+b            workspace $ws4; exec urxvt -hold -e sh -c "~/bin/backup_to_drive"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

@@ -4,7 +4,9 @@ loc=$(curl -s 'wttr.in/?format="%l"' | tr -d '"' | cut -f1 -d",")
 temp=$(curl -s 'wttr.in/?format="%t"' | tr -d '"+')
 precip=$(curl -s 'wttr.in/?format="%o"' | tr -d '"')
 
-if [[ ! -z "$precip" ]]; then
+if [[ -z "$loc" ]] && [[ -z "$temp" ]] && [[ -z "$precip" ]]; then
+    exit 1
+elif [[ ! -z "$precip" ]]; then
     echo "$loc: $temp (Rain $precip%)"
 else
     echo "$loc: $temp"

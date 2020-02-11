@@ -36,7 +36,7 @@ fi
 alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
 
 # Attach to or create tmux session
-if type tmux &> /dev/null && [[ -z $TMUX ]] && ! pgrep i3 &> /dev/null
+if type tmux &> /dev/null && [[ -z $TMUX ]];
 then
     if pgrep tmux &> /dev/null; then 
         tmux a && exit
