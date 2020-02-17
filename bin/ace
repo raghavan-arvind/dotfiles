@@ -4,9 +4,10 @@ set -e
 [[ $(pwd) != /home/raghavan/Documents/Research/crashmonkey/ace ]] && echo "Not in ace/ directory!" && exit
 
 if [[ $1 == "clean" ]]; then
-    rm -rf 2019*
+    rm -rf 2020*
     rm -rf ../code/tests/seq1/
     git checkout ../code/tests/seq1
+    rm -rf ../code/tests/seq3/
     rm -rf j-lang*
     rm -rf j2-lang*
     rm -rf 001 002 003 004 005 006 007 008 009 010 011 012 013 014
@@ -15,13 +16,21 @@ if [[ $1 == "clean" ]]; then
     rm -rf *.cpp
     rm -rf *.pyc
 elif [[ $1 == "generic" ]]; then
-    python2 ace.py -l 1 -t xfstest-concise
+    python3 ace.py -l 1 -t xfstest-concise
     for i in $(seq 1 13); do
-        python2 xfstestAdapter.py -p output/ -t ../code/tests/seq1/j-lang-files/j2-lang${i} -n $((568 + i)) -f generic
+        python3 xfstestAdapter.py -p output/ -t ../code/tests/seq1/j-lang-files/j2-lang${i} -n $((568 + i)) -f generic
     done
 elif [[ $1 == "fuzz" ]]; then
     cp ../code/tests/seq1/j-lang-files/j-lang16 .
     ./fuzzer.py -t j-lang16 -o output/
+elif [[ $1 == "xfs" ]]; then
+    cp ../code/tests/seq1/j-lang-files/j-lang16 .
+    python3 xfstestAdapter.py -t j-lang16 -p output/ -n 001
+elif [[ $1 == "cma" ]]; then
+    mkdir -p output/
+    cp ../code/tests/seq1/j-lang-files/j-lang16 .
+    cp ../code/tests/ace-base/base.cpp output/base_test.cpp
+    python3 cmAdapter.py -b code/tests/generic_039/base_test.cpp  -t j-lang16 -p output/
 else
     echo "No command given!"
 fi
