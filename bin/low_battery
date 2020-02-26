@@ -4,7 +4,7 @@ set -e
 
 [ -r "$HOME/.dbus/Xdbus" ] && . "$HOME/.dbus/Xdbus"
 
-low_threshold=20
+low_threshold=25
 critical_threshold=5
 suspend_command="systemctl suspend"
 

@@ -6,23 +6,22 @@ set nocompatible
 set encoding=utf-8
 set ignorecase
 set clipboard=unnamed
+set splitright
+set mouse=a
+set formatoptions=crqlj
 
 " Default Indent Settings "
 set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set textwidth=65
 
-" Filetype-specific Indent Settings"
+" Filetype-specific Indent Settings "
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
 
 " Mac Backspace Fix "
 set backspace=indent,eol,start
-
-set hidden
-set formatoptions+=r
-set splitright
-set mouse=a
 
 " Explorer Settings
 let g:netrw_banner = 0
@@ -35,6 +34,7 @@ nmap <Leader>j <Plug>VimwikiDiaryNextDay
 nmap <Space>l <Plug>VimwikiToggleListItem
 
 " Splitting Windows
+set hidden
 nnoremap <Space>w <C-W>
 nnoremap <Space>w/ :vsplit .<CR>
 
@@ -45,3 +45,7 @@ nnoremap <Space>bb :ls<CR>
 
 " Colors
 set background=dark
+
+" Fuzzy File Finding
+set path+=**
+set wildmenu
