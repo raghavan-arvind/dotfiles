@@ -44,9 +44,17 @@ nnoremap <Space>bn :bnext<CR>
 nnoremap <Space>bp :bprev<CR>
 nnoremap <Space>bb :ls<CR>
 
+" Leaving and Coming Back
+nnoremap <Space>f <C-Z>
+nnoremap <Space>m :wall<CR>:make<CR>
+
 " Colors
 set background=dark
 
 " Fuzzy File Finding
 set path+=**
 set wildmenu
+
+" For using :make
+set errorformat^=%-Gmake:\ ***\ [Makefile:2:\ compile]\ Error\ 1
+autocmd FileType python compiler pyunit

@@ -54,6 +54,7 @@ bindsym $mod+y exec systemctl suspend
 bindsym $mod+n exec spotify
 bindsym $mod+o exec "~/bin/airpods on"
 bindsym $mod+Shift+o exec "~/bin/airpods off"
+bindsym $mod+Shift+t exec "~/bin/togglemonitor"
 
 # kill focused window
 bindsym $mod+u kill
@@ -197,6 +198,13 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# unbind keys to clean keyboard
+mode "clean_keyboard" {
+        # back to normal: Enter or Escape or $mod+r
+        bindsym $mod+Control+Shift+c mode "default"
+}
+bindsym $mod+Control+Shift+c mode "clean_keyboard"
 # finds out, if available)
 # bar {
 #         status_command i3status
