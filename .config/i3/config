@@ -67,12 +67,12 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 for_window [class = ".*"] border pixel 2
-client.focused #000000 #000000 #000000 #00000 #EE9A49
-client.unfocused #000000 #000000 #000000 #00000 #8B7D6B
-gaps outer 10
-gaps inner 10
-gaps top 0
-gaps bottom 0
+# client.focused #000000 #000000 #000000 #00000 #EE9A49
+# client.unfocused #000000 #000000 #000000 #00000 #8B7D6B
+# gaps outer 10
+# gaps inner 10
+# gaps top 0
+# gaps bottom 0
 
 # change focus
 bindsym $mod+h focus left
@@ -206,6 +206,6 @@ mode "clean_keyboard" {
 }
 bindsym $mod+Control+Shift+c mode "clean_keyboard"
 # finds out, if available)
-# bar {
-#         status_command i3status
-# }
+bar {
+        status_command i3status
+}

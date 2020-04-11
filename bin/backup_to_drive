@@ -1,17 +1,32 @@
 #!/bin/bash
 set -e
 
+LOCAL_DIR="${HOME}/.backup"
+GDRIVE_DIR="Backup"
+
+if ! gdrive list | rg -q $GDRIVE_DIR; then
+    echo "Can't find $GDRIVE_DIR in Google Drive"
+    exit 1
+fi
+
+GDRIVE_ID=$(gdrive list | rg $GDRIVE_DIR | cut -d" " -f 1)
+TEMP=$LOCAL_DIR/backup_temp.tar.xz
+FINAL=$LOCAL_DIR/backup.tar.xz
+LOG=$LOCAL_DIR/log.txt
+
 # Create backup directory if it doesn't exist.
-mkdir -p ~/.backup
+mkdir -p $LOCAL_DIR
 
 # Create backup zip of home directory.
-tar caf ~/.backup/backup_temp.tar.xz ~/Documents ~/.local/share/Anki2 ~/.bash_temp
-mv ~/.backup/backup_temp.tar.xz ~/.backup/backup.tar.xz
+echo "Making tar backup..."
+time tar caf $TEMP -I pigz ${HOME}/Documents -P
+mv $TEMP $FINAL
 
 # Upload backup to Google Drive.
-~/bin/gdrive sync upload --keep-local ~/.backup $(cat ~/.gdrive_key)
-echo "$(date) - Successfully uploaded to gdrive." >> ~/.backup/log.txt
+echo "Uploading to Google Drive..."
+$(command -v gdrive) sync upload --keep-local $LOCAL_DIR $GDRIVE_ID
+echo "$(date) - Successfully uploaded to gdrive." >> $LOG
+echo "Done!"
 
 # Remove backup files from disk.
-rm -rf ~/.backup/backup.tar.xz
-rm -rf ~/.backup/backup_temp.tar.xz
+rm -rf $TEMP $FINAL

@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-name="XFSTest3"
+name="XFSTest"
 
-if [ "$1" = "-2" ]; then
-    name="XFSTest2"
-    shift 1
-fi
+# if [ "$1" = "-2" ]; then
+#     name="XFSTest2"
+#     shift 1
+# fi
 
 
 echo "Controlling $name!"

@@ -1,11 +1,16 @@
-export PATH="$PATH:~/bin"
+GOPATH=/home/$(whoami)/go
+export PATH="$PATH:~/bin:$GOPATH/bin"
 
-[[ ! -z $DISPLAY ]] && xset r rate 175 45
+[[ ! -z $DISPLAY ]] && xset r rate 155 45
 
 if [[ -f ~/.dropbox-dist/dropboxd ]] && ! pgrep dropbox &> /dev/null; then 
     nohup ~/.dropbox-dist/dropboxd &> /dev/null &
     disown
 fi
+
+VISUAL=$(command -v vim)
+EDITOR=$VISUAL
+alias e="$EDITOR"
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
