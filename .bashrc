@@ -50,3 +50,36 @@ fi
 
 [[ -f ~/.bash_temp ]] && source ~/.bash_temp
 
+# Inspired by/adapted from https://github.com/junegunn/fzf/wiki/examples
+# fd <optional pattern> - fuzzy cd recursively from cwd
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# fdc <optional pattern> - fuzzy cd everywhere
+fdc() {
+  local dir
+  if [[ $# -ne 0 ]]
+  then
+      dir="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
+  else
+      dir="$(locate -Ai -0 / | grep -z -vE '~$' | fzf --read0 -0 -1)"
+  fi
+
+  [[ -d $dir ]] && cd $dir
+}
+
+# fe - fuzzy edit everywhere
+fe() {
+  local file
+  if [[ $# -ne 0 ]]
+  then
+      file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
+  else
+      file="$(locate -Ai -0 / | grep -z -vE '~$' | fzf --read0 -0 -1)"
+  fi
+  [[ -f $file ]] && $EDITOR $file
+}
