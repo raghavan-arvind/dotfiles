@@ -15,10 +15,8 @@ fi
 
 # Save the current time
 date +%s > $LOGFILE
-echo "saved time" >> ~/.log
 
 if xrandr | rg -q "^DP1 disconnected"; then 
-    echo "No external monitor!" >> ~/.log
     xrandr --output eDP1 --auto --primary --mode 1920x1080
 else 
     if xrandr | rg -q "^eDP1 connected \(" || xrandr | rg -q "^eDP1 connected primary \("; then

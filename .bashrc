@@ -1,8 +1,6 @@
 GOPATH=/home/$(whoami)/go
 export PATH="$PATH:~/bin:$GOPATH/bin"
 
-[[ ! -z $DISPLAY ]] && xset r rate 155 45
-
 if [[ -f ~/.dropbox-dist/dropboxd ]] && ! pgrep dropbox &> /dev/null; then 
     nohup ~/.dropbox-dist/dropboxd &> /dev/null &
     disown
