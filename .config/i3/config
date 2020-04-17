@@ -55,7 +55,7 @@ bindsym $mod+y exec "~/bin/betterlockscreen -s dim"
 bindsym $mod+n exec spotify
 bindsym $mod+o exec "~/bin/airpods on"
 bindsym $mod+Shift+o exec "~/bin/airpods off"
-bindsym $mod+Shift+t exec "~/bin/togglemonitor"
+bindsym $mod+Shift+t exec "~/bin/monitor toggle"
 
 # kill focused window
 bindsym $mod+u kill
@@ -197,7 +197,6 @@ mode "resize" {
         bindsym q      mode "default"
         bindsym $mod+r mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 bar {
