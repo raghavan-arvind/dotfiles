@@ -11,4 +11,3 @@ elif [[ ! -z "$precip" ]]; then
 else
     echo "$loc: $temp"
 fi
-    

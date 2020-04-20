@@ -31,7 +31,7 @@ init_filenames() {
 	    datecolor=ffffffff
 	    loginbox=00000066
 		font="sans-serif"
-      	locktext='Type password to unlock...'
+		locktext="Type passwords to unlock..."
 	fi
 
 	# create folder in ~/.cache/i3lock directory
@@ -95,8 +95,7 @@ lock() {
 		--radius=20 --ring-width=4 --veriftext='' --wrongtext='' \
 		--verifcolor="$verifcolor" --timecolor="$timecolor" --datecolor="$datecolor" \
 		--time-font="$font" --date-font="$font" --layout-font="$font" --verif-font="$font" --wrong-font="$font" \
-		--noinputtext='' --force-clock --pass-media-keys $lockargs 
-
+		--noinputtext='' --force-clock --pass-media-keys $lockargs
 }
 
 
@@ -419,7 +418,7 @@ for arg in "$@"; do
 			if [[ ${2:0:1} = '-' ]]; then
 				shift 1
 			else
-		       		lockstyle="$2"; shift 2
+				lockstyle="$2"; shift 2
 			fi
 			;;
 

@@ -1,11 +1,11 @@
 #!/bin/bash
 if [ -z "$1" ] || [ "$1" = "on" ]; then
-    echo -e "default-agent\npower on\nscan on\n" | bluetoothctl ; 
-    echo -e "pair 20:19:12:2B:07:A8" | bluetoothctl ; 
+    echo -e "default-agent\npower on\nscan on\n" | bluetoothctl;
+    echo -e "pair 20:19:12:2B:07:A8" | bluetoothctl;
     sleep 1
-    echo -e "connect 20:19:12:2B:07:A8" | bluetoothctl ; 
+    echo -e "connect 20:19:12:2B:07:A8" | bluetoothctl;
 elif [ "$1" = "off" ]; then
-    echo -e "power off" | bluetoothctl ; 
+    echo -e "power off" | bluetoothctl;
 else
     echo "Usage: airpods <on/off> (Default: on)"
 fi

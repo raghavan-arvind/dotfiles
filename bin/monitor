@@ -2,7 +2,7 @@
 
 LOGFILE=/tmp/monitor
 
-# Don't allow this to be called more than once every two 
+# Don't allow this to be called more than once every two
 # seconds. Protects against high key repeat speeds.
 if [ -f $LOGFILE ]; then
     lasttoggle=$(cat $LOGFILE)
@@ -23,7 +23,7 @@ external() { xrandr --output DP1 --primary --mode 1920x1200 --output eDP1 --off 
 
 # If the external display isn't connected, restore primary
 # regardless of command.
-if xrandr | rg -q "^DP1 disconnected"; then 
+if xrandr | rg -q "^DP1 disconnected"; then
     primary
     exit
 fi

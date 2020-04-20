@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e 
+set -e
 
 [[ $(pwd) != /home/raghavan/Documents/Research/crashmonkey/ace ]] && echo "Not in ace/ directory!" && exit
 
