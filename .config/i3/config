@@ -39,11 +39,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-exec_always --no-startup-id "xrandr && xrandr --output eDP1 --mode 1920x1080"
+exec_always --no-startup-id "~/bin/monitor"
 exec_always --no-startup-id "feh --bg-scale ~/Pictures/wallpaper.png"
 exec_always --no-startup-id "~/.config/polybar/launch.sh"
 exec_always --no-startup-id "compton --config ~/.config/compton.conf"
-exec_always --no-startup-id "xset r rate 155 45"
+exec_always --no-startup-id "xset r rate 175 45"
 
 exec --no-startup-id "~/bin/save_dbus"
 

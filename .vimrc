@@ -58,3 +58,7 @@ set wildmenu
 " For using :make
 set errorformat^=%-Gmake:\ ***\ [Makefile:2:\ compile]\ Error\ 1
 autocmd FileType python compiler pyunit
+
+" Highlight whitespace damage
+highlight RedundantSpaces ctermbg=red guibg=red
+match RedundantSpaces /\s\+$\| \+\ze\t/

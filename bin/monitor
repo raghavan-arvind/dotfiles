@@ -33,7 +33,5 @@ if [[ $1 == "toggle" ]]; then
     # Else, switch back to main.
     xrandr | rg -q "^eDP1 connected \(" && primary || external
 else
-    # If invalid/no option specified, then restore normal
-    # display.
-    primary
+    external
 fi

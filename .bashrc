@@ -62,14 +62,9 @@ fd() {
 # fdc <optional pattern> - fuzzy cd everywhere
 fdc() {
   local dir
-  if [[ $# -ne 0 ]]
-  then
-      dir="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
-  else
-      dir="$(locate -Ai -0 / | grep -z -vE '~$' | fzf --read0 -0 -1)"
-  fi
-
-  [[ -d $dir ]] && cd $dir
+  dir=$(find ${1:-/} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
 }
 
 # fe - fuzzy edit everywhere
