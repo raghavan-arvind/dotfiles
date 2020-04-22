@@ -19,6 +19,7 @@ set textwidth=65
 
 " Filetype-specific Indent Settings "
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
+autocmd Filetype sh setlocal shiftwidth=4 tabstop=4 noexpandtab
 
 " Mac Backspace Fix "
 set backspace=indent,eol,start

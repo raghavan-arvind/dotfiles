@@ -17,8 +17,8 @@ fi
 # Save the current time
 date +%s > $LOGFILE
 
-primary() { xrandr --output eDP1 --auto --primary --mode 1920x1080 ; }
-external() { xrandr --output DP1 --primary --mode 1920x1200 --output eDP1 --off ; }
+primary()  { xrandr --output eDP1 --auto --primary --mode 1920x1080 ; }
+external() { xrandr --output  DP1 --auto --primary --mode 1920x1200 --output eDP1 --off ; }
 
 
 # If the external display isn't connected, restore primary

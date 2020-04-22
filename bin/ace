@@ -4,33 +4,53 @@ set -e
 [[ $(pwd) != /home/raghavan/Documents/Research/crashmonkey/ace ]] && echo "Not in ace/ directory!" && exit
 
 if [[ $1 == "clean" ]]; then
-    rm -rf 2020*
-    rm -rf ../code/tests/seq1/
-    git checkout ../code/tests/seq1
-    rm -rf ../code/tests/seq3/
-    rm -rf j-lang*
-    rm -rf j2-lang*
-    rm -rf 001 002 003 004 005 006 007 008 009 010 011 012 013 014
-    rm -rf 001.out 002.out 003.out 004.out 005.out 006.out 007.out 008.out 009.out 010.out 011.out 012.out 013.out 014.out
-    rm -rf output/
-    rm -rf *.cpp
-    rm -rf *.pyc
+	rm -rf 2020*
+	rm -rf ../code/tests/seq1/
+	git checkout ../code/tests/seq1
+	rm -rf ../code/tests/seq3/
+	rm -rf j-lang*
+	rm -rf j2-lang*
+	rm -rf 001 002 003 004 005 006 007 008 009 010 011 012 013 014
+	rm -rf 001.out 002.out 003.out 004.out 005.out 006.out 007.out 008.out 009.out 010.out 011.out 012.out 013.out 014.out
+	rm -rf output/
+	rm -rf *.cpp
+	rm -rf *.pyc
 elif [[ $1 == "generic" ]]; then
-    python3 ace.py -l 1 -t xfstest-concise
-    for i in $(seq 1 13); do
-        python3 xfstestAdapter.py -p output/ -t ../code/tests/seq1/j-lang-files/j2-lang${i} -n $((568 + i)) -f generic
-    done
+	python3 ace.py -l 1 -t xfstest-concise
+	for i in $(seq 1 13); do
+		python3 xfstestAdapter.py -p output/ -t ../code/tests/seq1/j-lang-files/j2-lang${i} -n $((568 + i)) -f generic
+	done
 elif [[ $1 == "fuzz" ]]; then
-    cp ../code/tests/seq1/j-lang-files/j-lang16 .
-    ./fuzzer.py -t j-lang16 -o output/
+	cp ../code/tests/seq1/j-lang-files/j-lang16 .
+	./fuzzer.py -t j-lang16 -o output/
 elif [[ $1 == "xfs" ]]; then
-    cp ../code/tests/seq1/j-lang-files/j-lang16 .
-    python3 xfstestAdapter.py -t j-lang16 -p output/ -n 001
-elif [[ $1 == "cma" ]]; then
-    mkdir -p output/
-    cp ../code/tests/seq1/j-lang-files/j-lang16 .
-    cp ../code/tests/ace-base/base.cpp output/base_test.cpp
-    python3 cmAdapter.py -b code/tests/generic_039/base_test.cpp  -t j-lang16 -p output/
+	cp ../code/tests/seq1/j-lang-files/j-lang16 .
+	python3 xfstestAdapter.py -t j-lang16 -p output/ -n 001
+elif [[ $1 == generate ]]; then
+	all=(
+		dwrite
+		falloc
+		link
+		mkdir
+		mmapwrite
+		open
+		removexattr
+		rename
+		fsetxattr
+		truncate
+		write
+		unlink)
+	./ace.py -l 1 -t xfstest-concise
+	pushd ../code/tests/seq1 &> /dev/null;
+	mkdir -p ../../../../generated_tests
+	rm -rf ../../../../generated_tests/*
+	for op in ${all[@]}; do
+		echo Moving $op...
+		file=$(rg "function ${op}_template" -l)
+		mv ${file} ../../../../generated_tests/${op}
+		mv ${file}.out ../../../../generated_tests/${op}.out
+	done
+	popd &> /dev/null;
 else
-    echo "No command given!"
+	echo "No command given!"
 fi
