@@ -46,7 +46,7 @@ nnoremap <Space>bp :bprev<CR>
 nnoremap <Space>bb :ls<CR>
 
 " Leaving and Coming Back
-nnoremap <Space>f <C-Z>
+nnoremap <Space>f :wall<CR><C-Z>
 nnoremap <Space>m :wall<CR>:make<CR>
 
 " Colors
@@ -63,3 +63,9 @@ autocmd FileType python compiler pyunit
 " Highlight whitespace damage
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$\| \+\ze\t/
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+nnoremap <Space>tr :call TrimWhitespace()<CR>
