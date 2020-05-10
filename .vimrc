@@ -69,3 +69,5 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 nnoremap <Space>tr :call TrimWhitespace()<CR>
+
+let g:cargo_makeprg_params = '--color always'

@@ -3,7 +3,7 @@
 LOGFILE=/tmp/monitor
 
 # Don't allow this to be called more than once every two
-# seconds. Protects against high key repeat speeds.
+# seconds. Protects against high key repeat.
 if [ -f $LOGFILE ]; then
     lasttoggle=$(cat $LOGFILE)
     cutoff=$(date -d "2 seconds ago" +%s)

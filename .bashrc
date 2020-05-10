@@ -9,6 +9,8 @@ fi
 VISUAL=$(command -v vim)
 EDITOR=$VISUAL
 alias e="$EDITOR"
+alias m="$(command -v neomutt)"
+
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
