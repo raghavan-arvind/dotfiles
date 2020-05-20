@@ -69,13 +69,13 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Read Xresources colors
-set_from_resource $fg foreground
-set_from_resource $bg background
-set_from_resource $fbg color8
+set_from_resource $fg URxvt.foreground #000000
+set_from_resource $bg URxvt.background #FFFFFF
+set_from_resource $fbg URxvt.color8 #FFFF00
 
 for_window [class = ".*"] border pixel 4
-client.focused $fbg $fbg $fbg $fbg $fbg
-client.unfocused $bg $bg $bg $bg $bg
+client.focused $fbg $fbg $fbg $fbg
+client.unfocused $bg $bg $bg $bg
 # gaps outer 10
 # gaps inner 10
 # gaps top 0

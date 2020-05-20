@@ -2,6 +2,7 @@
 ln -f .vimrc ~/.vimrc
 ln -f .bashrc ~/.bashrc
 ln -f .tmux.conf ~/.tmux.conf
+ln -f .Xresources ~/.Xresources
 
 mkdir -p ~/.config/i3
 mkdir -p ~/.config/i3status
