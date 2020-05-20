@@ -49,6 +49,9 @@ nnoremap <Space>bb :ls<CR>
 nnoremap <Space>f :wall<CR><C-Z>
 nnoremap <Space>m :wall<CR>:make<CR>
 
+" Move reminder list to Finished
+nnoremap <Space>td O<CR><Esc>k:read !date +"\%a \%b \%d"<CR>kJI#<Space><Esc>p
+
 " Colors
 set background=dark
 

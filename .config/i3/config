@@ -56,6 +56,7 @@ bindsym $mod+n exec spotify
 bindsym $mod+o exec "~/bin/airpods on"
 bindsym $mod+Shift+o exec "~/bin/airpods off"
 bindsym $mod+Shift+t exec "~/bin/monitor toggle"
+bindsym $mod+Control+Shift+4 exec --no-startup-id "deepin-screenshot -n"
 
 # kill focused window
 bindsym $mod+u kill

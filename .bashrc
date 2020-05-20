@@ -1,32 +1,30 @@
+# Env Variables ---------------------------
 GOPATH=/home/$(whoami)/go
 export PATH="$PATH:~/bin:$GOPATH/bin"
 
-if [[ -f ~/.dropbox-dist/dropboxd ]] && ! pgrep dropbox &> /dev/null; then 
-    nohup ~/.dropbox-dist/dropboxd &> /dev/null &
-    disown
-fi
-
 VISUAL=$(command -v vim)
 EDITOR=$VISUAL
-alias e="$EDITOR"
-alias m="$(command -v neomutt)"
 
-
+# Prompt ----------------------------------
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-
 export PS1='\[\e[0;38;5;114m\]\W\[\e[0m\]\[\e[0;38;5;228m\]$(parse_git_branch)\[\e[0m\] \$ '
+
+# Shortcuts -------------------------------
+alias e="$EDITOR"
+function m() {
+	pushd ~/Downloads &> dev/null
+	$(command -v neomutt)
+	popd &> /dev/null
+}
 
 alias copy="xclip -sel c"
 alias rl="source ~/.bashrc"
 alias edit="vim ~/.bashrc && source ~/.bashrc"
-open() {
-    nohup xdg-open $@ &> /dev/null &
-    disown
-}
+alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
 
-# Reminder to back up local machine
+# Print Backup reminder -------------------
 if [ -f ~/.backup/log.txt ]; then
     lastbackup=$(tail -n 1 ~/.backup/log.txt | cut -d - -f 1)
     lastbackuputc=$(date -d "$lastbackup" +%s)
@@ -37,10 +35,13 @@ if [ -f ~/.backup/log.txt ]; then
     fi
 fi
 
-# Pretty git branch logging
-alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
+# Dropbox Daemon --------------------------
+if [[ -f ~/.dropbox-dist/dropboxd ]] && ! pgrep dropbox &> /dev/null; then
+    nohup ~/.dropbox-dist/dropboxd &> /dev/null &
+    disown
+fi
 
-# Attach to or create tmux session
+# Tmux ------------------------------------
 if type tmux &> /dev/null && [[ -z $TMUX ]];
 then
     if pgrep tmux &> /dev/null; then
@@ -50,9 +51,8 @@ then
     fi
 fi
 
-[[ -f ~/.bash_temp ]] && source ~/.bash_temp
-
-# Inspired by/adapted from https://github.com/junegunn/fzf/wiki/examples
+# Fuzzy Searching -------------------------
+# Adapted from https://github.com/junegunn/fzf/wiki/examples
 # fd <optional pattern> - fuzzy cd recursively from cwd
 fd() {
   local dir
