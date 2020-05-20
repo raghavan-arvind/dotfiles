@@ -68,9 +68,14 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Read Xresources colors
+set_from_resource $fg foreground
+set_from_resource $bg background
+set_from_resource $fbg color8
+
 for_window [class = ".*"] border pixel 4
-# client.focused #000000 #000000 #000000 #00000 #EE9A49
-# client.unfocused #000000 #000000 #000000 #00000 #8B7D6B
+client.focused $fbg $fbg $fbg $fbg $fbg
+client.unfocused $bg $bg $bg $bg $bg
 # gaps outer 10
 # gaps inner 10
 # gaps top 0

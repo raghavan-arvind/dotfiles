@@ -14,7 +14,7 @@ export PS1='\[\e[0;38;5;114m\]\W\[\e[0m\]\[\e[0;38;5;228m\]$(parse_git_branch)\[
 # Shortcuts -------------------------------
 alias e="$EDITOR"
 function m() {
-	pushd ~/Downloads &> dev/null
+	pushd ~/Downloads &> /dev/null
 	$(command -v neomutt)
 	popd &> /dev/null
 }
