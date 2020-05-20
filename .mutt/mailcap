@@ -1,0 +1,15 @@
+# HTML
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+
+# Images
+image/jpg; feh -F %s
+image/jpeg; feh -F %s
+image/pjpeg; feh -F %s
+image/png; feh -F %s
+image/gif; feh -F %s
+
+# PDFs
+application/pdf; evince %s
+
+# Text
+text/plain; $EDITOR %s

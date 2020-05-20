@@ -6,12 +6,13 @@ ln -f .Xresources ~/.Xresources
 
 mkdir -p ~/.config/i3
 mkdir -p ~/.config/i3status
-mkdir -p ~/.config/polybar
+mkdir -p ~/.mutt
 
 ln -f .config/i3/config ~/.config/i3/config
 ln -f .config/i3status/config ~/.config/i3status/config
-ln -f .config/polybar/config ~/.config/polybar/config
-ln -f .config/polybar/launch.sh ~/.config/polybar/launch.sh
+ln -f .mutt/colors.standard ~/.mutt/colors.standard
+ln -f .mutt/mailcap ~/.mutt/mailcap
+ln -f .mutt/muttrc ~/.mutt/muttrc
 
 mkdir -p ~/bin
 cp bin/* ~/bin
