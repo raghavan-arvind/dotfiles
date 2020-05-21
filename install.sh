@@ -17,6 +17,10 @@ ln -f .mutt/muttrc ~/.mutt/muttrc
 mkdir -p ~/bin
 cp bin/* ~/bin
 
+if type xrdb &> /dev/null; then
+	xrdb ~/.Xresources
+fi
+
 # Install vim packages
 if [ ! -d ~/.vim/pack/plugins/start/vimwiki ]; then
     echo "Installing vimwiki..." ;

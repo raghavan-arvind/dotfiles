@@ -25,7 +25,7 @@ set hostname="gmail.com"
 set postponed="+[Gmail]/Drafts"
 
 # SMTP Options ---------------------------------------
-set from='Arvind Raghavan <$my_email>'
+set from="Arvind Raghavan <$my_email>"
 set use_from=yes
 set envelope_from=yes
 set smtp_url="smtps://$my_email@smtp.gmail.com:465/"
