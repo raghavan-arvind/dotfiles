@@ -13,3 +13,6 @@ application/pdf; evince %s
 
 # Text
 text/plain; $EDITOR %s
+
+# MS Word
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; pandoc --from docx --to markdown %s; copiousoutput;

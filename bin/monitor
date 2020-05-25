@@ -17,9 +17,8 @@ fi
 # Save the current time
 date +%s > $LOGFILE
 
-primary()  { xrandr --output eDP1 --auto --primary --mode 1920x1080 ; }
+primary()  { xrandr --output eDP1 --auto --primary --mode 1920x1080 --output DP1  --off ; }
 external() { xrandr --output  DP1 --auto --primary --mode 1920x1200 --output eDP1 --off ; }
-
 
 # If the external display isn't connected, restore primary
 # regardless of command.
@@ -29,9 +28,16 @@ if xrandr | rg -q "^DP1 disconnected"; then
 fi
 
 if [[ $1 == "toggle" ]]; then
+	echo toggle
     # If main display on, switch to external.
     # Else, switch back to main.
-    xrandr | rg -q "^eDP1 connected \(" && primary || external
+	if xrandr | rg -U "^eDP1*\**^DP1"; then
+		echo "main is on"
+		external
+	else
+		echo "main isnt on"
+		primary
+	fi
 else
     external
 fi
