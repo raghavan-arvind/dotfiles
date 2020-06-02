@@ -72,11 +72,7 @@ fdc() {
 # fe - fuzzy edit everywhere
 fe() {
   local file
-  if [[ $# -ne 0 ]]
-  then
-      file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
-  else
-      file="$(locate -Ai -0 / | grep -z -vE '~$' | fzf --read0 -0 -1)"
-  fi
-  [[ -f $file ]] && $EDITOR $file
+  file=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type f -print 2> /dev/null | fzf +m) &&
+  $EDITOR "$file"
 }

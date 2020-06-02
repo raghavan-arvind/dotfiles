@@ -15,7 +15,7 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set textwidth=65
+set textwidth=75
 
 " Filetype-specific Indent Settings "
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
