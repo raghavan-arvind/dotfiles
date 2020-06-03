@@ -6,10 +6,10 @@ VISUAL=$(command -v vim)
 EDITOR=$VISUAL
 
 # Prompt ----------------------------------
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-export PS1='\[\e[0;38;5;114m\]\W\[\e[0m\]\[\e[0;38;5;228m\]$(parse_git_branch)\[\e[0m\] \$ '
+if [[ -f ~/.git-prompt.sh ]]; then
+	source ~/.git-prompt.sh
+	export PS1='\[\e[0;38;5;114m\]\W\[\e[0;38;5;228m\]$(__git_ps1 " (%s)") \[\e[0m\]\$ '
+fi
 
 # Shortcuts -------------------------------
 alias e="$EDITOR"

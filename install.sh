@@ -13,6 +13,7 @@ ln -f .config/i3status/config ~/.config/i3status/config
 ln -f .mutt/colors.standard ~/.mutt/colors.standard
 ln -f .mutt/mailcap ~/.mutt/mailcap
 ln -f .mutt/muttrc ~/.mutt/muttrc
+ln -f .git-prompt.sh ~/.git-prompt.sh
 
 mkdir -p ~/bin
 cp bin/* ~/bin
