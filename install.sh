@@ -31,6 +31,7 @@ if ! type fzf &> /dev/null; then
 	rm -rf ~/.fzf
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	printf "y\ny\nn\n" | ~/.fzf/install
+	rm -f ~/.fzf.zsh
 fi
 
 # Install vim packages
