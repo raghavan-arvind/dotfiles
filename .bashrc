@@ -53,10 +53,7 @@ fi
 
 # Fuzzy Searching -------------------------
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.scripts/fzf-git.sh ] && source ~/.scripts/fzf-git.sh
 # fuzzy edit everywhere
-fe() {
-	$EDITOR $(fzf)
-}
-fd() {
-	cd $(find * -type d | fzf)
-}
+fe() { $EDITOR $(fzf) ; }
+fd() { cd $(find * -type d | fzf) ; }
