@@ -52,27 +52,11 @@ then
 fi
 
 # Fuzzy Searching -------------------------
-# Adapted from https://github.com/junegunn/fzf/wiki/examples
-# fd <optional pattern> - fuzzy cd recursively from cwd
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-# fdc <optional pattern> - fuzzy cd everywhere
-fdc() {
-  local dir
-  dir=$(find ${1:-/} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-# fe - fuzzy edit everywhere
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# fuzzy edit everywhere
 fe() {
-  local file
-  file=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type f -print 2> /dev/null | fzf +m) &&
-  $EDITOR "$file"
+	$EDITOR $(fzf)
+}
+fd() {
+	cd $(find * -type d | fzf)
 }
