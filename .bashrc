@@ -2,7 +2,8 @@
 GOPATH=/home/$(whoami)/go
 export PATH="$PATH:~/bin:$GOPATH/bin"
 
-VISUAL=$(command -v vim)
+EDITOR_NAME="vim"
+VISUAL=$(command -v $EDITOR_NAME)
 EDITOR=$VISUAL
 
 # Prompt ----------------------------------
@@ -12,7 +13,14 @@ if [[ -f ~/.git-prompt.sh ]]; then
 fi
 
 # Shortcuts -------------------------------
-alias e="$EDITOR"
+function e() {
+	if jobs | rg -q "$EDITOR_NAME"; then
+		jobnum=$(jobs | rg -q "$EDITOR_NAME" | tr -d -c 0-9)
+		fg $jobnum
+	else
+		$EDITOR
+	fi
+}
 function m() {
 	pushd ~/Downloads &> /dev/null
 	$(command -v neomutt)
@@ -54,6 +62,5 @@ fi
 # Fuzzy Searching -------------------------
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.scripts/fzf-git.sh ] && source ~/.scripts/fzf-git.sh
-# fuzzy edit everywhere
 fe() { $EDITOR $(fzf) ; }
 fd() { cd $(find * -type d | fzf) ; }

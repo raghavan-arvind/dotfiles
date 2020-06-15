@@ -9,6 +9,7 @@ set clipboard=unnamed
 set splitright
 set mouse=a
 set formatoptions=crqlj
+let mapleader="\<Space>"
 
 " Default Indent Settings "
 set autoindent
@@ -27,10 +28,10 @@ set backspace=indent,eol,start
 " Explorer Settings
 let g:netrw_banner = 0
 let g:netrw_liststyle=3
-nnoremap <Space>re :Rex<CR>
+nnoremap <Leader>re :Rex<CR>
 
 " VimWiki Settings "
-nmap <Space>l <Plug>VimwikiToggleListItem
+nmap <Leader>l <Plug>VimwikiToggleListItem
 let g:vimwiki_list = [{
 \    'path': '~/Dropbox/vimwiki/',
 \    'syntax': 'markdown',
@@ -39,26 +40,28 @@ let g:vimwiki_list = [{
 
 " Splitting Windows
 set hidden
-nnoremap <Space>w <C-W>
-nnoremap <Space>w/ :vsplit .<CR>
+nnoremap <Leader>w <C-W>
+nnoremap <Leader>w/ :vsplit .<CR>
 
 " Leaving and Coming Back
-nnoremap <Space>s :wall<CR>
-nnoremap <Space>m :wall<CR>:make<CR>
+nnoremap <Leader>s :wall<CR>
+nnoremap <Leader>m :wall<CR>:make<CR>
 
 " Move reminder list to Finished
-nnoremap <Space>td O<CR><Esc>k:read !date +"\%a \%b \%d"<CR>kJI#<Space><Esc>p
+nnoremap <Leader>td O<CR><Esc>k:read !date +"\%a \%b \%d"<CR>kJI#<Space><Esc>p
+nnoremap <Leader>yd O<CR><Esc>k:read !date<Space>-d<Space>"yesterday" +"\%a \%b \%d"<CR>kJI#<Space><Esc>p
 
 " Colors
 set background=dark
 
 " fzf
 set rtp+=~/.fzf
-nnoremap <Space>fe :Files<CR>
-nnoremap <Space>fa :Files<Space>~<CR>
-nnoremap <Space>fb :Buffers<CR>
-nnoremap <Space>fg :GFiles?<CR>
-nnoremap <Space>fl :Lines<CR>
+nnoremap <Leader>fe :Files<CR>
+nnoremap <Leader>fa :Files<Space>~<CR>
+nnoremap <Leader>fg :GFiles?<CR>
+nnoremap <Leader>fl :Lines<CR>
+nnoremap <Leader>b  :Buffers<CR>
+nnoremap <Leader>fr :Rg<SPACE>
 
 " For using :make
 set errorformat^=%-Gmake:\ ***\ [Makefile:2:\ compile]\ Error\ 1
@@ -72,6 +75,6 @@ fun! TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
-nnoremap <Space>tr :call TrimWhitespace()<CR>
+nnoremap <Leader>tr :call TrimWhitespace()<CR>
 
 let g:cargo_makeprg_params = '--color always'
