@@ -14,12 +14,17 @@ fi
 
 # Shortcuts -------------------------------
 function e() {
-	if jobs | rg -q "$EDITOR_NAME"; then
-		jobnum=$(jobs | rg -q "$EDITOR_NAME" | tr -d -c 0-9)
-		fg $jobnum
-	else
-		$EDITOR
-	fi
+	names=("$EDITOR_NAME" "EDITOR")
+	found="false"
+	for n in ${names[@]}; do
+		if jobs | rg -q "$n"; then
+			found="true"
+			jobnum=$(jobs | rg -q "$n" | tr -d -c 0-9)
+			fg $jobnum
+			return
+		fi
+	done
+	[ $found = "false" ] && $EDITOR
 }
 function m() {
 	pushd ~/Downloads &> /dev/null
