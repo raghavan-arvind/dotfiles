@@ -27,7 +27,7 @@ if type xrdb &> /dev/null; then
 fi
 
 # Install fzf
-if ! type fzf &> /dev/null; then
+if ! type fzf &> /dev/null || [ ! -d ~/.fzf ]; then
 	rm -rf ~/.fzf
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	printf "y\ny\nn\n" | ~/.fzf/install
@@ -56,3 +56,5 @@ for i in ${vim_packages[@]}; do
 		git clone $git_url $install_dir;
 	fi
 done
+
+source ~/.bashrc

@@ -7,8 +7,8 @@ VISUAL=$(command -v $EDITOR_NAME)
 EDITOR=$VISUAL
 
 # Prompt ----------------------------------
-if [[ -f ~/.git-prompt.sh ]]; then
-	source ~/.git-prompt.sh
+if [[ -f ~/.scripts/git-prompt.sh ]]; then
+	source ~/.scripts/git-prompt.sh
 	export PS1='\[\e[0;38;5;114m\]\W\[\e[0;38;5;228m\]$(__git_ps1 " (%s)") \[\e[0m\]\$ '
 fi
 
