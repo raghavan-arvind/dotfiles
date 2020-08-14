@@ -4,6 +4,7 @@ ln -f .vimrc ~/.vimrc
 ln -f .bashrc ~/.bashrc
 ln -f .tmux.conf ~/.tmux.conf
 ln -f .Xresources ~/.Xresources
+ln -f .gitconfig ~/.gitconfig
 
 # Create required folders
 mkdir -p ~/.config/i3

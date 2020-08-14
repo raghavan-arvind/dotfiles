@@ -1,0 +1,9 @@
+[alias]
+	co = checkout
+	br = branch
+	c = commit
+	s = status
+	a = add
+[user]
+	name = Arvind Raghavan
+	email = raghavan.arvind@gmail.com
