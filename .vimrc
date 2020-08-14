@@ -16,7 +16,7 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set textwidth=70
+set textwidth=80
 
 " Filetype-specific Indent Settings "
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
@@ -41,7 +41,7 @@ let g:vimwiki_list = [{
 " Splitting Windows
 set hidden
 nnoremap <Leader>w <C-W>
-nnoremap <Leader>w/ :vsplit .<CR>
+nnoremap <Leader>w/ :vsplit<CR>:Files<CR>
 
 " Leaving and Coming Back
 nnoremap <Leader>s :wall<CR>
@@ -61,7 +61,10 @@ nnoremap <Leader>fa :Files<Space>~<CR>
 nnoremap <Leader>fg :GFiles?<CR>
 nnoremap <Leader>fl :Lines<CR>
 nnoremap <Leader>b  :Buffers<CR>
-nnoremap <Leader>fr :Rg<SPACE>
+nnoremap <Leader>r :Rg<SPACE>
+
+" Search for word under cursor
+nnoremap <Leader>fw :Rg<SPACE><C-R><C-W><CR>
 
 " For using :make
 set errorformat^=%-Gmake:\ ***\ [Makefile:2:\ compile]\ Error\ 1
