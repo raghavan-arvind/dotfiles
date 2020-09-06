@@ -12,11 +12,13 @@ from email.mime.text import MIMEText
 def send_email(email, name):
     recruiter_email = email.lower()
     name = name.lower().capitalize()
-    subject = "Software Development Internship"
+    subject = "Software Engineering Full-Time Candidate"
     body = """\
 Hi {}!
 
-I wanted to reach out because I would love to be considered for the Summer 2020 Software Engineering Internship position. I've attached my resume below, and if you think this would be a good fit, it would be awesome if you could pass my resume along.
+I'm graduating this December as a Computer Science Major at the University of Texas at Austin, and I wanted to reach out because I would love to be considered for the full-time Software Engineer position. I interned at Jane Street and Robinhood my past two summers, but I've heard some great things about Amazon from some technically sharp people I know, so I wanted to see if it would be a good fit. I know things are crazy with COVID right now, so I totally understand if hiring is not going on as normal.
+
+Please let me know if you have any questions/concerns!
 
 Thanks!
 Arvind
@@ -31,7 +33,7 @@ Arvind
 
         message.attach(MIMEText(body, "plain"))
 
-        filename = "/home/raghavan/Documents/ImportantFiles/Arvind_Resume.pdf"
+        filename = "/home/raghavan/Documents/ArvindRaghavanResume.pdf"
 
         with open(filename, "rb") as attachment:
             part = MIMEBase("application", "octet-stream")
@@ -41,7 +43,7 @@ Arvind
 
         part.add_header(
             "Content-Disposition",
-            f"attachment; filename=Arvind_Resume.pdf",
+            f"attachment; filename=Arvind_Raghavan_Resume.pdf",
         )
 
         message.attach(part)
@@ -78,15 +80,11 @@ def get_emails(first, last, domain, do_all=False):
     emails.append("{1}.{0}@{2}.com".format(first, last, domain))
     emails.append("{1}-{0}@{2}.com".format(first, last, domain))
     emails.append("{1}_{0}@{2}.com".format(first, last, domain))
-    if len(last) > 1:
+
+    if do_all:
         emails.append("{0}{1}@{2}.com".format(first, last[0], domain))
         emails.append("{0}{1}@{2}.com".format(first[0], last, domain))
         emails.append("{0}-{1}@{2}.com".format(first[0], last, domain))
-        emails.append("{1}{0}@{2}.com".format(first[0], last, domain))
-
-    if do_all:
-        emails.append("{0}@{2}.com".format(first, last, domain))
-        emails.append("{1}@{2}.com".format(first, last, domain))
 
     return emails
 

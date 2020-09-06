@@ -1,36 +1,45 @@
 #!/bin/bash
 set -e
 
-LOCAL_DIR="${HOME}/.backup"
+LOCAL_DIR="${HOME}/gdrive/Backup"
 GDRIVE_DIR="Backup"
-GDRIVE=${HOME}/go/bin/gdrive
-
-if ! $GDRIVE list | rg -q $GDRIVE_DIR; then
-    echo "Can't find $GDRIVE_DIR in Google Drive"
-    exit 1
-fi
-
-GDRIVE_ID=$($GDRIVE list | rg $GDRIVE_DIR | cut -d" " -f 1)
-TEMP=$LOCAL_DIR/backup_temp.tar.xz
-FINAL=$LOCAL_DIR/backup.tar.xz
+DRIVE=${HOME}/go/bin/drive
 LOG=$LOCAL_DIR/log.txt
 
-# Create backup directory if it doesn't exist.
-mkdir -p $LOCAL_DIR
+if [ "$1" = "--remind" ]; then
+	if [[ -f $LOG ]]; then
+		lastbackup=$(tail -n 1 $LOG | cut -d - -f 1)
+		lastbackuputc=$(date -d "$lastbackup" +%s)
+		cutoff=$(date -d "4 days ago" +%s)
 
-# Create backup zip of home directory.
-echo "Making tar backup..."
-# time tar caf $TEMP -I pigz ${HOME}/Documents -P
-tar cf - ${HOME}/Documents -P                                \
-    | pv -s $(du -sb ${HOME}/Documents | awk '{print $1}')   \
-    | pigz > $TEMP
-mv $TEMP $FINAL
+		if (( $lastbackuputc < $cutoff )); then
+			echo Backup computer! Last backup was on $(date -d "$lastbackup" +"%b %d")
+		fi
+	fi
+else
+	# Create backup directory if it doesn't exist.
+	mkdir -p $LOCAL_DIR
+	pushd $LOCAL_DIR &> /dev/null
 
-# Upload backup to Google Drive.
-echo "Uploading to Google Drive..."
-$GDRIVE sync upload --keep-local $LOCAL_DIR $GDRIVE_ID
-echo "$(date) - Successfully uploaded to gdrive." >> $LOG
-echo "Done!"
+	TEMP=$LOCAL_DIR/backup_temp.tar.xz
+	FINAL=$LOCAL_DIR/backup.tar.xz
 
-# Remove backup files from disk.
-rm -rf $TEMP $FINAL
+
+	# Create backup zip of home directory.
+	echo "Making backup..."
+	tar cf - ${HOME}/Documents -P                                \
+		| pv -s $(du -sb ${HOME}/Documents | awk '{print $1}')   \
+		| pigz > $TEMP
+	mv $TEMP $FINAL
+
+	# Upload backup to Google Drive.
+	echo "Uploading to Google Drive..."
+	printf "y\n" | $DRIVE push -force backup.tar.xz
+	echo "$(date +"%c") - Successfully uploaded to gdrive." >> $LOG
+	printf "y\n" | $DRIVE push -force log.txt
+	echo "Done!"
+
+	# Remove backup files from disk.
+	rm -rf $TEMP $FINAL
+	popd &> /dev/null
+fi

@@ -2,6 +2,10 @@
 GOPATH=/home/$(whoami)/go
 export PATH="$PATH:~/bin:$GOPATH/bin"
 
+if which ruby > /dev/null && which gem > /dev/null; then
+    PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
+
 EDITOR_NAME="vim"
 VISUAL=$(command -v $EDITOR_NAME)
 EDITOR=$VISUAL
@@ -36,21 +40,16 @@ alias copy="xclip -sel c"
 alias rl="source ~/.bashrc"
 alias edit="vim ~/.bashrc && source ~/.bashrc"
 alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
+alias jekyll="bundle exec jekyll"
 
 # Print Backup reminder -------------------
-if [ -f ~/.backup/log.txt ]; then
-    lastbackup=$(tail -n 1 ~/.backup/log.txt | cut -d - -f 1)
-    lastbackuputc=$(date -d "$lastbackup" +%s)
-    cutoff=$(date -d "3 days ago" +%s)
-
-    if (( $lastbackuputc < $cutoff )); then
-        echo Backup computer! Last backup was on $(date -d "$lastbackup" +"%b %d")
-    fi
-fi
+BACKUP_BIN="/home/$(whoami)/bin/backup_to_drive"
+[[ -f $BACKUP_BIN ]] && $BACKUP_BIN --remind
 
 # Dropbox Daemon --------------------------
-if [[ -f ~/.dropbox-dist/dropboxd ]] && ! pgrep dropbox &> /dev/null; then
-    nohup ~/.dropbox-dist/dropboxd &> /dev/null &
+DROPBOX_BIN="~/.dropbox-dist/dropboxd"
+if [[ -f $DROPBOX_BIN ]] && ! pgrep dropbox &> /dev/null; then
+    nohup $DROPBOX_BIN &> /dev/null &
     disown
 fi
 

@@ -29,6 +29,9 @@ done
 if [[ $1 == "external" && ! -z $display ]]; then
 	xrandr --output $display --mode 1920x1200 --primary \
 		--output eDP1 --off
+elif [[ $1 == "both" && ! -z $display ]]; then
+	xrandr --output $display --mode 1920x1200 --primary \
+		--output eDP1 --mode 1920x1080 --right-of $display
 else
 	xrandr --output eDP1 --mode 1920x1080 --primary \
 		--output DP1 --off \

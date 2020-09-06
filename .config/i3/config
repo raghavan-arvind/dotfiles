@@ -16,7 +16,7 @@ font pango:monospace 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 8
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -39,11 +39,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-exec_always --no-startup-id "~/bin/monitor external"
+exec_always --no-startup-id "~/bin/monitor both"
 exec_always --no-startup-id "feh --bg-scale ~/Pictures/wallpaper.png"
 exec_always --no-startup-id "~/.config/polybar/launch.sh"
 exec_always --no-startup-id "compton --config ~/.config/compton.conf"
-exec_always --no-startup-id "xset r rate 175 45"
+exec_always --no-startup-id "xset r rate 185 50"
 
 exec --no-startup-id "~/bin/save_dbus"
 
@@ -52,13 +52,13 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+b exec chromium
 bindsym $mod+i exec urxvt -e vim ~/.config/i3/config
 bindsym $mod+y exec "~/bin/betterlockscreen -s dim"
-bindsym $mod+n exec spotify
 bindsym $mod+o exec "~/bin/airpods on"
 bindsym $mod+Shift+o exec "~/bin/airpods off"
 bindsym $mod+Control+Shift+4 exec --no-startup-id "deepin-screenshot -n"
 
 bindsym $mod+Shift+e exec "~/bin/monitor external"
 bindsym $mod+Shift+m exec "~/bin/monitor"
+bindsym $mod+Shift+s exec "~/bin/monitor both"
 
 # kill focused window
 bindsym $mod+u kill
@@ -173,8 +173,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # Workspace bindings
 bindsym $mod+p                  workspace prev
 bindsym $mod+Shift+p            move container to workspace prev
-bindsym $mod+semicolon          workspace next
-bindsym $mod+Shift+semicolon    move container to workspace next
+bindsym $mod+n                  workspace next
+bindsym $mod+Shift+n            move container to workspace next
 bindsym $mod+Tab                workspace back_and_forth
 bindsym $mod+g                  workspace $ws1
 bindsym $mod+Shift+b            workspace $ws4; exec urxvt -hold -e sh -c "~/bin/backup_to_drive"
