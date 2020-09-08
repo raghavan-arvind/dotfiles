@@ -39,7 +39,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-exec_always --no-startup-id "~/bin/monitor both"
+exec_always --no-startup-id "~/bin/monitor external"
 exec_always --no-startup-id "feh --bg-scale ~/Pictures/wallpaper.png"
 exec_always --no-startup-id "~/.config/polybar/launch.sh"
 exec_always --no-startup-id "compton --config ~/.config/compton.conf"
