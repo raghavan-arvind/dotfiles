@@ -1,5 +1,5 @@
 # Env Variables ---------------------------
-GOPATH=/home/$(whoami)/go
+GOPATH="${HOME}/go"
 export PATH="$PATH:~/bin:$GOPATH/bin"
 
 if which ruby > /dev/null && which gem > /dev/null; then
@@ -11,8 +11,9 @@ VISUAL=$(command -v $EDITOR_NAME)
 EDITOR=$VISUAL
 
 # Prompt ----------------------------------
-if [[ -f ~/.scripts/git-prompt.sh ]]; then
-	source ~/.scripts/git-prompt.sh
+GIT_PROMPT="${HOME}/.scripts/git-prompt.sh"
+if [[ -x $GIT_PROMPT ]]; then
+	source $GIT_PROMPT
 	export PS1='\[\e[0;38;5;114m\]\W\[\e[0;38;5;228m\]$(__git_ps1 " (%s)") \[\e[0m\]\$ '
 fi
 
@@ -30,11 +31,6 @@ function e() {
 	done
 	[ $found = "false" ] && $EDITOR
 }
-function m() {
-	pushd ~/Downloads &> /dev/null
-	$(command -v neomutt)
-	popd &> /dev/null
-}
 
 alias copy="xclip -sel c"
 alias rl="source ~/.bashrc"
@@ -43,15 +39,8 @@ alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
 alias jekyll="bundle exec jekyll"
 
 # Print Backup reminder -------------------
-BACKUP_BIN="/home/$(whoami)/bin/backup_to_drive"
-[[ -f $BACKUP_BIN ]] && $BACKUP_BIN --remind
-
-# Dropbox Daemon --------------------------
-DROPBOX_BIN="~/.dropbox-dist/dropboxd"
-if [[ -f $DROPBOX_BIN ]] && ! pgrep dropbox &> /dev/null; then
-    nohup $DROPBOX_BIN &> /dev/null &
-    disown
-fi
+BACKUP_BIN="${HOME}/bin/backup_to_drive"
+[[ -x $BACKUP_BIN ]] && $BACKUP_BIN --remind
 
 # Tmux ------------------------------------
 if type tmux &> /dev/null && [[ -z $TMUX ]];

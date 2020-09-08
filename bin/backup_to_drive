@@ -1,45 +1,51 @@
 #!/bin/bash
 set -e
 
-LOCAL_DIR="${HOME}/gdrive/Backup"
-GDRIVE_DIR="Backup"
+# Config Variables ----------------
+REMIND="4 days ago"
 DRIVE=${HOME}/go/bin/drive
-LOG=$LOCAL_DIR/log.txt
+BACKUP_DIR="${HOME}/gdrive/Backup"
 
+# Derived Variables ---------------
+LOG=$BACKUP_DIR/log.txt
+
+
+# Check Last Backup and Remind ----
 if [ "$1" = "--remind" ]; then
 	if [[ -f $LOG ]]; then
 		lastbackup=$(tail -n 1 $LOG | cut -d - -f 1)
 		lastbackuputc=$(date -d "$lastbackup" +%s)
-		cutoff=$(date -d "4 days ago" +%s)
+		cutoff=$(date -d "$REMIND" +%s)
 
 		if (( $lastbackuputc < $cutoff )); then
 			echo Backup computer! Last backup was on $(date -d "$lastbackup" +"%b %d")
 		fi
 	fi
-else
-	# Create backup directory if it doesn't exist.
-	mkdir -p $LOCAL_DIR
-	pushd $LOCAL_DIR &> /dev/null
-
-	TEMP=$LOCAL_DIR/backup_temp.tar.xz
-	FINAL=$LOCAL_DIR/backup.tar.xz
-
-
-	# Create backup zip of home directory.
-	echo "Making backup..."
-	tar cf - ${HOME}/Documents -P                                \
-		| pv -s $(du -sb ${HOME}/Documents | awk '{print $1}')   \
-		| pigz > $TEMP
-	mv $TEMP $FINAL
-
-	# Upload backup to Google Drive.
-	echo "Uploading to Google Drive..."
-	printf "y\n" | $DRIVE push -force backup.tar.xz
-	echo "$(date +"%c") - Successfully uploaded to gdrive." >> $LOG
-	printf "y\n" | $DRIVE push -force log.txt
-	echo "Done!"
-
-	# Remove backup files from disk.
-	rm -rf $TEMP $FINAL
-	popd &> /dev/null
+	exit
 fi
+
+# Do Backup -----------------------
+# Create backup directory if it doesn't exist.
+mkdir -p $BACKUP_DIR
+pushd $BACKUP_DIR &> /dev/null
+
+TEMP=$BACKUP_DIR/backup_temp.tar.xz
+FINAL=$BACKUP_DIR/backup.tar.xz
+
+# Create backup zip of home directory.
+echo "Making backup..."
+tar cf - ${HOME}/Documents -P                                \
+	| pv -s $(du -sb ${HOME}/Documents | awk '{print $1}')   \
+	| pigz > $TEMP
+mv $TEMP $FINAL
+
+# Upload backup to Google Drive.
+echo "Uploading to Google Drive..."
+printf "y\n" | $DRIVE push -force backup.tar.xz
+echo "$(date +"%c") - Successfully uploaded to gdrive." >> $LOG
+printf "y\n" | $DRIVE push -force log.txt
+echo "Done!"
+
+# Remove backup files from disk.
+rm -rf $TEMP $FINAL
+popd &> /dev/null
