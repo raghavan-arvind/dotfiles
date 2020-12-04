@@ -24,7 +24,7 @@ def hook_default_time(task, due):
 
 task = json.loads(sys.stdin.readline())
 
-if task['due']:
+if 'due' in task and task['due']:
     due = parser.parse(task["due"])
     if is_local_midnight(due):
         hook_default_time(task, due)

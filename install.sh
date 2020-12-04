@@ -11,7 +11,6 @@ mkdir -p ~/.config/i3
 mkdir -p ~/.config/i3status
 mkdir -p ~/.mutt
 mkdir -p ~/.scripts
-mkdir -p ~/.task/hooks
 
 ln -f .config/i3/config ~/.config/i3/config
 ln -f .config/i3status/config ~/.config/i3status/config
@@ -20,8 +19,11 @@ ln -f .mutt/mailcap ~/.mutt/mailcap
 ln -f .mutt/muttrc ~/.mutt/muttrc
 ln -f scripts/git-prompt.sh ~/.scripts/git-prompt.sh
 ln -f scripts/fzf-git.sh ~/.scripts/fzf-git.sh
-ln -f task/on-add-default-time.py ~/.task/hooks/on-add-default-time.py
-ln -f task/on-modify-default-time.py ~/.task/hooks/on-modify-default-time.py
+
+if [[ -d ~/.task ]]; then
+	mkdir -p ~/.task/hooks
+	cp task/* ~/.task/hooks
+fi
 
 mkdir -p ~/bin
 cp bin/* ~/bin
