@@ -11,6 +11,7 @@ mkdir -p ~/.config/i3
 mkdir -p ~/.config/i3status
 mkdir -p ~/.mutt
 mkdir -p ~/.scripts
+mkdir -p ~/.task/hooks
 
 ln -f .config/i3/config ~/.config/i3/config
 ln -f .config/i3status/config ~/.config/i3status/config
@@ -19,6 +20,11 @@ ln -f .mutt/mailcap ~/.mutt/mailcap
 ln -f .mutt/muttrc ~/.mutt/muttrc
 ln -f scripts/git-prompt.sh ~/.scripts/git-prompt.sh
 ln -f scripts/fzf-git.sh ~/.scripts/fzf-git.sh
+
+for f in $(ls task); do
+	ln -f task/$f ~/.task/hooks/$f
+	chmod +x ~/.task/hooks/$f
+done
 
 mkdir -p ~/bin
 cp bin/* ~/bin

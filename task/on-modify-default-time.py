@@ -22,6 +22,7 @@ def hook_default_time(task, due):
         task['due'] = set_default_time(due)
         print("Default due time has been set.")
 
+original_task = json.loads(sys.stdin.readline())
 task = json.loads(sys.stdin.readline())
 
 if 'due' in task and task['due']:
@@ -30,3 +31,4 @@ if 'due' in task and task['due']:
         hook_default_time(task, due)
 
 print(json.dumps(task))
+sys.exit(0)
