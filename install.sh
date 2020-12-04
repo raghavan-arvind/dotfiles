@@ -20,11 +20,6 @@ ln -f .mutt/muttrc ~/.mutt/muttrc
 ln -f scripts/git-prompt.sh ~/.scripts/git-prompt.sh
 ln -f scripts/fzf-git.sh ~/.scripts/fzf-git.sh
 
-if [[ -d ~/.task ]]; then
-	mkdir -p ~/.task/hooks
-	cp task/* ~/.task/hooks
-fi
-
 mkdir -p ~/bin
 cp bin/* ~/bin
 
