@@ -56,4 +56,5 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.scripts/fzf-git.sh ] && source ~/.scripts/fzf-git.sh
 fe() { $EDITOR $(fzf) ; }
+fa() { $EDITOR $(find ~ | fzf) ; }
 fd() { cd $(find * -type d | fzf) ; }
