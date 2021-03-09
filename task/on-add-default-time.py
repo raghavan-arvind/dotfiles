@@ -6,7 +6,7 @@ import json
 from datetime import time, datetime
 from dateutil import parser
 
-DEFAULT_TIME = time(22,0,0)
+DEFAULT_TIME = time(23,30,00)
 
 def is_local_midnight(dt):
     return dt.astimezone().time() == time(0,0,0)
