@@ -50,6 +50,7 @@ exec --no-startup-id "~/bin/save_dbus"
 # Start programs
 bindsym $mod+Return exec urxvt
 bindsym $mod+b exec chromium
+bindsym $mod+m exec obsidian
 bindsym $mod+i exec urxvt -e vim ~/.config/i3/config
 bindsym $mod+y exec "~/bin/betterlockscreen -s dim"
 bindsym $mod+o exec "~/bin/airpods on"
