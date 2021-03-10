@@ -14,7 +14,8 @@ EDITOR=$VISUAL
 GIT_PROMPT="${HOME}/.scripts/git-prompt.sh"
 if [[ -x $GIT_PROMPT ]]; then
 	source $GIT_PROMPT
-	export PS1='\[\e[0;38;5;114m\]\W\[\e[0;38;5;228m\]$(__git_ps1 " (%s)") \[\e[0m\]\$ '
+	# export PS1='\[\e[0;38;5;114m\]\W\[\e[0;38;5;228m\]$(__git_ps1 " (%s)") \[\e[0m\]\$ '
+    precmd () { __git_ps1 "%F{114}%~%F{228}" " %f$ " " (%s)" }
 fi
 
 # Shortcuts -------------------------------
@@ -53,7 +54,8 @@ then
 fi
 
 # Fuzzy Searching -------------------------
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -z "$ZSH_NAME" ] && [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -z "$ZSH_NAME" ] || [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.scripts/fzf-git.sh ] && source ~/.scripts/fzf-git.sh
 fe() { $EDITOR $(fzf) ; }
 fa() { $EDITOR $(find ~ | fzf) ; }

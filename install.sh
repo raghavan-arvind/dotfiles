@@ -1,7 +1,7 @@
 #!/bin/bash
 # Link config files
 ln -f .vimrc ~/.vimrc
-ln -f .bashrc ~/.bashrc
+ln -f .zshrc ~/.zshrc
 ln -f .tmux.conf ~/.tmux.conf
 ln -f .Xresources ~/.Xresources
 ln -f .gitconfig ~/.gitconfig
@@ -29,7 +29,7 @@ if ! type fzf &> /dev/null || [ ! -d ~/.fzf ]; then
 	rm -rf ~/.fzf
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	printf "y\ny\nn\n" | ~/.fzf/install
-	rm -f ~/.fzf.zsh
+	rm -f ~/.fzf.bash
 fi
 
 # Install vim packages
@@ -55,4 +55,4 @@ for i in ${vim_packages[@]}; do
 	fi
 done
 
-source ~/.bashrc
+source ~/.zshrc
