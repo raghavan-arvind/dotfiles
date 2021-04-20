@@ -14,8 +14,7 @@ EDITOR=$VISUAL
 GIT_PROMPT="${HOME}/.scripts/git-prompt.sh"
 if [[ -x $GIT_PROMPT ]]; then
 	source $GIT_PROMPT
-	# export PS1='\[\e[0;38;5;114m\]\W\[\e[0;38;5;228m\]$(__git_ps1 " (%s)") \[\e[0m\]\$ '
-    precmd () { __git_ps1 "%F{114}%~%F{228}" " %f$ " " (%s)" }
+    PROMPT='%F{114}%~%F{228}$(__git_ps1 " (%s)") %f$ '
 fi
 
 # Shortcuts -------------------------------
