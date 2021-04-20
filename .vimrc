@@ -50,8 +50,8 @@ nnoremap <Leader>s :wall<CR>
 nnoremap <Leader>m :wall<CR>:make<CR>
 
 " Move reminder list to Finished
-nnoremap <Leader>td O<CR><Esc>k:read !date +"\%a \%b \%d, \%Y"<CR>kJI#<Space><Esc>p
-nnoremap <Leader>yd O<CR><Esc>k:read !date<Space>-d<Space>"yesterday" +"\%a \%b \%d, \%Y"<CR>kJI#<Space><Esc>p
+nnoremap <Leader>td O<CR><Esc>k:read !gdate +"\%a \%b \%d, \%Y"<CR>kJI#<Space><Esc>p
+nnoremap <Leader>yd O<CR><Esc>k:read !gdate<Space>-d<Space>"yesterday" +"\%a \%b \%d, \%Y"<CR>kJI#<Space><Esc>p
 
 " Colors
 set background=dark
