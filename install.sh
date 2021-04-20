@@ -1,22 +1,31 @@
 #!/bin/bash
-# Link config files
-ln -f .vimrc ~/.vimrc
-ln -f .zshrc ~/.zshrc
-ln -f .tmux.conf ~/.tmux.conf
-ln -f .Xresources ~/.Xresources
-ln -f .gitconfig ~/.gitconfig
-
 # Create required folders
 mkdir -p ~/.config/i3
 mkdir -p ~/.config/i3status
 mkdir -p ~/.scripts
 mkdir -p ~/.task/hooks
 
-ln -f .config/i3/config ~/.config/i3/config
-ln -f .config/i3status/config ~/.config/i3status/config
-ln -f scripts/git-prompt.sh ~/.scripts/git-prompt.sh
-ln -f scripts/fzf-git.sh ~/.scripts/fzf-git.sh
+# Link config files
+config_files=(
+    '.vimrc'
+    '.zshrc'
+    '.tmux.conf'
+    '.Xresources'
+    '.gitconfig'
+    '.config/i3/config'
+    '.config/i3status/config'
+    '.scripts/git-prompt.sh'
+    '.scripts/fzf-git.sh'
+)
 
+# Create softlinks to config files
+pushd $HOME &> /dev/null
+for f in ${config_files[@]}; do
+    ln -s -f "${HOME}/dotfiles/${f}" $f
+done
+popd &> /dev/null
+
+# Copy bin directory
 mkdir -p ~/bin
 cp bin/* ~/bin
 
