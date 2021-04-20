@@ -38,6 +38,7 @@ vim_packages=(
 	'surround    https://tpope.io/vim/surround.git'
 	'commentary  https://tpope.io/vim/commentary.git'
 	'fzf         https://github.com/junegunn/fzf.vim'
+	'fugitive    https://tpope.io/vim/fugitive.git'
 )
 
 OLDIFS=$IFS

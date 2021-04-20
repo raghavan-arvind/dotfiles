@@ -5,6 +5,7 @@ inoremap jk <Esc>
 set nocompatible
 set encoding=utf-8
 set ignorecase
+set smartcase
 set clipboard^=unnamed,unnamedplus
 set splitright
 set mouse=a
@@ -21,7 +22,7 @@ set textwidth=80
 " Filetype-specific Indent Settings "
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
 autocmd Filetype html setlocal shiftwidth=2 tabstop=2
-autocmd Filetype sh setlocal shiftwidth=4 tabstop=4 noexpandtab
+autocmd Filetype javascript setlocal shiftwidth=2 tabstop=2
 
 " Mac Backspace Fix "
 set backspace=indent,eol,start
@@ -70,6 +71,10 @@ nnoremap <Leader>fw :Rg<SPACE><C-R><C-W><CR>
 " For using :make
 set errorformat^=%-Gmake:\ ***\ [Makefile:2:\ compile]\ Error\ 1
 autocmd FileType python compiler pyunit
+
+" vim-go
+nnoremap <Leader>gb :wall<CR>:GoBuild<CR>
+nnoremap <Leader>gr :wall<CR>:GoRun<CR>
 
 " Highlight whitespace damage
 highlight RedundantSpaces ctermbg=red guibg=red
