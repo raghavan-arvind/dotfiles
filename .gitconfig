@@ -4,6 +4,7 @@
 	c = commit
 	s = status
 	a = add
+	st = stash
 [user]
 	name = Arvind Raghavan
 	email = raghavan.arvind@gmail.com
