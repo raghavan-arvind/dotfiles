@@ -5,7 +5,7 @@ inoremap jk <Esc>
 set nocompatible
 set encoding=utf-8
 set ignorecase
-set clipboard=unnamedplus
+set clipboard^=unnamed,unnamedplus
 set splitright
 set mouse=a
 set formatoptions=crqlj
