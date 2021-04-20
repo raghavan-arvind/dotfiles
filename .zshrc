@@ -34,8 +34,8 @@ function e() {
 }
 
 alias copy="xclip -sel c"
-alias rl="source ~/.bashrc"
-alias edit="vim ~/.bashrc && source ~/.bashrc"
+alias rl="source ~/.zshrc"
+alias edit="vim ~/.zshrc && source ~/.zshrc"
 alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
 alias jekyll="bundle exec jekyll"
 
