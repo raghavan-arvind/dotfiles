@@ -14,7 +14,8 @@ EDITOR=$VISUAL
 GIT_PROMPT="${HOME}/.scripts/git-prompt.sh"
 if [[ -x $GIT_PROMPT ]]; then
 	source $GIT_PROMPT
-    PROMPT='%F{114}%~%F{228}$(__git_ps1 " (%s)") %f$ '
+    setopt PROMPT_SUBST
+    PS1='%F{114}%~%F{228}$(__git_ps1 " (%s)") %f$ '
 fi
 
 # Shortcuts -------------------------------
