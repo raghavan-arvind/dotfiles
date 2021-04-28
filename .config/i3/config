@@ -43,7 +43,7 @@ exec_always --no-startup-id "~/bin/monitor external"
 exec_always --no-startup-id "feh --bg-scale ~/Pictures/wallpaper.png"
 exec_always --no-startup-id "~/.config/polybar/launch.sh"
 exec_always --no-startup-id "compton --config ~/.config/compton.conf"
-exec_always --no-startup-id "xset r rate 185 50"
+exec_always --no-startup-id "xset r rate 210 40"
 
 exec --no-startup-id "~/bin/save_dbus"
 
