@@ -8,3 +8,11 @@
 [user]
 	name = Arvind Raghavan
 	email = raghavan.arvind@gmail.com
+[diff]
+	tool = vimdiffwrite
+[difftool]
+	prompt = false
+[difftool "vimdiffwrite"]
+    cmd = "vimdiff $LOCAL $REMOTE"
+[pull]
+	ff = only

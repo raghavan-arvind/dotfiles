@@ -38,6 +38,7 @@ alias rl="source ~/.zshrc"
 alias edit="vim ~/.zshrc && source ~/.zshrc"
 alias gitb="git log --graph  --pretty=oneline --abbrev-commit"
 alias jekyll="bundle exec jekyll"
+alias amend="git add -u && git commit --amend --no-edit"
 
 # Print Backup reminder -------------------
 BACKUP_BIN="${HOME}/bin/backup_to_drive"

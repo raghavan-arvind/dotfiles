@@ -23,6 +23,7 @@ set textwidth=80
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
 autocmd Filetype html setlocal shiftwidth=2 tabstop=2
 autocmd Filetype javascript setlocal shiftwidth=2 tabstop=2
+autocmd Filetype tf setlocal shiftwidth=2 tabstop=2
 
 " Mac Backspace Fix "
 set backspace=indent,eol,start
@@ -45,6 +46,9 @@ set hidden
 nnoremap <Leader>w <C-W>
 nnoremap <Leader>w/ :vsplit<CR>:Files<CR>
 
+" Close Buffer without closing split
+command Bd bp\|bd \#
+
 " Leaving and Coming Back
 nnoremap <Leader>s :wall<CR>
 nnoremap <Leader>m :wall<CR>:make<CR>
@@ -63,7 +67,7 @@ nnoremap <Leader>fa :Files<Space>~<CR>
 nnoremap <Leader>fg :GFiles?<CR>
 nnoremap <Leader>fl :Lines<CR>
 nnoremap <Leader>b  :Buffers<CR>
-nnoremap <Leader>r :Rg<SPACE>
+nnoremap <Leader>r  :Rg<SPACE>
 
 " Search for word under cursor
 nnoremap <Leader>fw :Rg<SPACE><C-R><C-W><CR>
